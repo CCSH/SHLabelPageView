@@ -47,8 +47,8 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     if ([scrollView isEqual:self.bigScroll]) {
+
         CGFloat value = scrollView.contentOffset.x / scrollView.frame.size.width;
-        
         //设置偏移
         [SHLabelPageView shareSHLabelPageView].contentOffsetX = value;
     }

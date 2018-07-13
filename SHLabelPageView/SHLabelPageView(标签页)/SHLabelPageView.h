@@ -30,6 +30,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) UIColor *selectedColor;
 //偏移量(设置滑动中的效果)
 @property (nonatomic, assign) CGFloat contentOffsetX;
+//选中线的Y
+@property (nonatomic, assign) CGFloat currentY;
 //回调(标签点击回调)
 @property (nonatomic, copy) void(^pageViewBlock)(SHLabelPageView *pageView);
 //类型

@@ -127,18 +127,24 @@
     
     //视图分割线
     self.line.frame = CGRectMake(0, self.height - 0.5, self.width, 0.5);
-    //当前点击的线
-    self.currentLine.origin = CGPointMake(0, 40);
     //设置滚动大小
     self.pageScroll.size = CGSizeMake(self.width, self.line.y);
+    //选中的线
+    if (self.currentY) {
+        self.currentLine.y = self.currentY;
+    }else{
+        self.currentLine.y = self.pageScroll.height/2 + (self.fontSize.lineHeight?:[UIFont systemFontOfSize:18].lineHeight)/2 + 4;
+    }
     
     //设置标签
     CGFloat view_h = self.pageScroll.bounds.size.height;
+    //间隔
     CGFloat view_x = 8;
+    CGFloat view_width = 0;
     
     if (self.type == SHLabelPageType_one) {
-        CGFloat view_width = 100;
-        view_x = (self.width - self.pageList.count*view_width)/2;
+        view_x = 20;
+        view_width = (self.width - 2*view_x)/self.pageList.count;
     }
     
     int i = 0;
@@ -152,14 +158,14 @@
         if (self.type == SHLabelPageType_more) {
             label.frame = CGRectMake(view_x, 0, [self getChannelWithText:channel], view_h);
         }else{
-            label.frame = CGRectMake(view_x, 0, 100, view_h);
+            label.frame = CGRectMake(view_x, 0, view_width, view_h);
         }
         
         view_x += label.width;
         label.tag = 10 + i;
         i++;
     }
-    self.pageScroll.contentSize = CGSizeMake(view_x, 0);
+    self.pageScroll.contentSize = CGSizeMake((self.type == SHLabelPageType_more)?(view_x + 8):self.width, 0);
     
     [self.pageScroll addSubview:self.currentLine];
     
