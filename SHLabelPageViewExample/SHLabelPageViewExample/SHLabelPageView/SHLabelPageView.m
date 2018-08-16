@@ -7,6 +7,7 @@
 //
 
 #import "SHLabelPageView.h"
+#import "UIView+SHExtension.h"
 
 @interface SHLabelPageView ()
 

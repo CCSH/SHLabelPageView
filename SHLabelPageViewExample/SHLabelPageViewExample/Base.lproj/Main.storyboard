@@ -1,24 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3nG-Tz-g9a">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="wuQ-in-Yw5">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController storyboardIdentifier="SHLabelPageViewController" id="3nG-Tz-g9a" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3IL-ff-eGl"/>
+                        <viewControllerLayoutGuide type="bottom" id="wuo-wF-RyJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OP5-GZ-VTN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Las-au-hhd" customClass="SHLabelPageViewContrller">
+                                <rect key="frame" x="0.0" y="200" width="375" height="200"/>
+                                <color key="backgroundColor" red="1" green="0.96848641150000003" blue="0.23545004429999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="iv1-Oz-PW3"/>
+                                </constraints>
+                            </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LA5-aM-vdQ">
+                                <rect key="frame" x="100" y="120" width="175" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="WZk-da-R34"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QIe-7u-uDD">
+                                <rect key="frame" x="137.5" y="450" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="UEk-Ve-iTi"/>
+                                    <constraint firstAttribute="width" constant="100" id="iDs-nA-qFh"/>
+                                </constraints>
+                                <state key="normal" title="切换"/>
+                                <connections>
+                                    <action selector="btnAction:" destination="3nG-Tz-g9a" eventType="touchUpInside" id="tKB-HV-o0h"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <constraints>
+                            <constraint firstItem="Las-au-hhd" firstAttribute="leading" secondItem="OP5-GZ-VTN" secondAttribute="leading" id="1QM-WT-dvu"/>
+                            <constraint firstAttribute="trailing" secondItem="LA5-aM-vdQ" secondAttribute="trailing" constant="100" id="DTo-PQ-hbp"/>
+                            <constraint firstItem="QIe-7u-uDD" firstAttribute="top" secondItem="Las-au-hhd" secondAttribute="bottom" constant="50" id="GdP-4R-XzD"/>
+                            <constraint firstItem="LA5-aM-vdQ" firstAttribute="leading" secondItem="OP5-GZ-VTN" secondAttribute="leading" constant="100" id="SlE-Aq-FzW"/>
+                            <constraint firstItem="Las-au-hhd" firstAttribute="top" secondItem="OP5-GZ-VTN" secondAttribute="top" constant="200" id="cOj-F6-o8b"/>
+                            <constraint firstItem="LA5-aM-vdQ" firstAttribute="top" secondItem="3IL-ff-eGl" secondAttribute="bottom" constant="100" id="egv-8I-fvN"/>
+                            <constraint firstAttribute="trailing" secondItem="Las-au-hhd" secondAttribute="trailing" id="nUe-tX-mek"/>
+                            <constraint firstItem="QIe-7u-uDD" firstAttribute="centerX" secondItem="OP5-GZ-VTN" secondAttribute="centerX" id="yVL-U2-9XH"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="xkT-RW-kT5"/>
+                    <connections>
+                        <outlet property="bigScroll" destination="Las-au-hhd" id="1RU-5B-gq2"/>
+                        <outlet property="num" destination="LA5-aM-vdQ" id="jTK-DM-RN2"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dBx-ZX-X6q" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="892" y="110"/>
         </scene>
     </scenes>
 </document>

@@ -22,6 +22,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    self.bigScroll.delegate = self;
+    
     NSArray *pageList = @[@"最新",@"热门",@"精华"];
     
     //初始化
