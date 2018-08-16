@@ -1,8 +1,8 @@
 //
 //  main.m
-//  SHLabelPageView
+//  SHLabelPageViewExample
 //
-//  Created by CSH on 2018/7/10.
+//  Created by CSH on 2018/8/15.
 //  Copyright © 2018年 CSH. All rights reserved.
 //
 

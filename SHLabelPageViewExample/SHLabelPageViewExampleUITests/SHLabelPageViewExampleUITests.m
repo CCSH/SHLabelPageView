@@ -1,18 +1,18 @@
 //
-//  SHLabelPageViewUITests.m
-//  SHLabelPageViewUITests
+//  SHLabelPageViewExampleUITests.m
+//  SHLabelPageViewExampleUITests
 //
-//  Created by CSH on 2018/7/10.
+//  Created by CSH on 2018/8/15.
 //  Copyright © 2018年 CSH. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface SHLabelPageViewUITests : XCTestCase
+@interface SHLabelPageViewExampleUITests : XCTestCase
 
 @end
 
-@implementation SHLabelPageViewUITests
+@implementation SHLabelPageViewExampleUITests
 
 - (void)setUp {
     [super setUp];
