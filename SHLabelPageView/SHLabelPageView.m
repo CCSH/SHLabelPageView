@@ -135,6 +135,7 @@
     }else{
         self.currentLine.y = self.pageScroll.height/2 + (self.fontSize.lineHeight?:[UIFont systemFontOfSize:18].lineHeight)/2 + 4;
     }
+    self.currentLine.backgroundColor = self.currentColor?:[UIColor redColor];
     
     //设置标签
     CGFloat view_h = self.pageScroll.bounds.size.height;
@@ -273,7 +274,6 @@
     if (!_currentLine) {
         _currentLine = [[UIView alloc]init];
         _currentLine.size = CGSizeMake(20, 4);
-        _currentLine.backgroundColor = [UIColor redColor];
         _currentLine.layer.cornerRadius = 2;
         _currentLine.layer.masksToBounds = YES;
     }

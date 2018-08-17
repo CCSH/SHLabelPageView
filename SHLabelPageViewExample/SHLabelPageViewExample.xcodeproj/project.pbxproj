@@ -16,9 +16,7 @@
 		5C020D8521241A7900F8AFBB /* SHLabelPageViewExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C020D8421241A7900F8AFBB /* SHLabelPageViewExampleTests.m */; };
 		5C020D9021241A7900F8AFBB /* SHLabelPageViewExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C020D8F21241A7900F8AFBB /* SHLabelPageViewExampleUITests.m */; };
 		5C020DA021241AE800F8AFBB /* SHLabelPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C020D9F21241AE800F8AFBB /* SHLabelPageView.m */; };
-		5CC96B182125064D00E78A40 /* UIView+SHExtension.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 5CC96B142125064D00E78A40 /* UIView+SHExtension.podspec */; };
-		5CC96B192125064D00E78A40 /* UIView+SHExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC96B152125064D00E78A40 /* UIView+SHExtension.m */; };
-		5CC96B1A2125064D00E78A40 /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 5CC96B162125064D00E78A40 /* .gitattributes */; };
+		5C3D232E2126CDA400E46D76 /* UIView+SHExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3D232C2126CDA400E46D76 /* UIView+SHExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,10 +55,8 @@
 		5C020D9121241A7900F8AFBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C020D9E21241AE800F8AFBB /* SHLabelPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHLabelPageView.h; sourceTree = "<group>"; };
 		5C020D9F21241AE800F8AFBB /* SHLabelPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHLabelPageView.m; sourceTree = "<group>"; };
-		5CC96B142125064D00E78A40 /* UIView+SHExtension.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UIView+SHExtension.podspec"; sourceTree = "<group>"; };
-		5CC96B152125064D00E78A40 /* UIView+SHExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SHExtension.m"; sourceTree = "<group>"; };
-		5CC96B162125064D00E78A40 /* .gitattributes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
-		5CC96B172125064D00E78A40 /* UIView+SHExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SHExtension.h"; sourceTree = "<group>"; };
+		5C3D232C2126CDA400E46D76 /* UIView+SHExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SHExtension.m"; sourceTree = "<group>"; };
+		5C3D232D2126CDA400E46D76 /* UIView+SHExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SHExtension.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +107,7 @@
 		5C020D6A21241A7800F8AFBB /* SHLabelPageViewExample */ = {
 			isa = PBXGroup;
 			children = (
-				5CC96B132125064D00E78A40 /* UIView+SHExtension */,
+				5C3D232B2126CDA400E46D76 /* Helper(帮助类) */,
 				5C020D9D21241AE800F8AFBB /* SHLabelPageView */,
 				5C020D6B21241A7800F8AFBB /* AppDelegate.h */,
 				5C020D6C21241A7800F8AFBB /* AppDelegate.m */,
@@ -153,15 +149,13 @@
 			path = SHLabelPageView;
 			sourceTree = "<group>";
 		};
-		5CC96B132125064D00E78A40 /* UIView+SHExtension */ = {
+		5C3D232B2126CDA400E46D76 /* Helper(帮助类) */ = {
 			isa = PBXGroup;
 			children = (
-				5CC96B142125064D00E78A40 /* UIView+SHExtension.podspec */,
-				5CC96B162125064D00E78A40 /* .gitattributes */,
-				5CC96B172125064D00E78A40 /* UIView+SHExtension.h */,
-				5CC96B152125064D00E78A40 /* UIView+SHExtension.m */,
+				5C3D232C2126CDA400E46D76 /* UIView+SHExtension.m */,
+				5C3D232D2126CDA400E46D76 /* UIView+SHExtension.h */,
 			);
-			path = "UIView+SHExtension";
+			path = "Helper(帮助类)";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,10 +261,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CC96B1A2125064D00E78A40 /* .gitattributes in Resources */,
 				5C020D7821241A7900F8AFBB /* LaunchScreen.storyboard in Resources */,
 				5C020D7521241A7900F8AFBB /* Assets.xcassets in Resources */,
-				5CC96B182125064D00E78A40 /* UIView+SHExtension.podspec in Resources */,
 				5C020D7321241A7800F8AFBB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,7 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C020D7021241A7800F8AFBB /* ViewController.m in Sources */,
-				5CC96B192125064D00E78A40 /* UIView+SHExtension.m in Sources */,
+				5C3D232E2126CDA400E46D76 /* UIView+SHExtension.m in Sources */,
 				5C020D7B21241A7900F8AFBB /* main.m in Sources */,
 				5C020D6D21241A7800F8AFBB /* AppDelegate.m in Sources */,
 				5C020DA021241AE800F8AFBB /* SHLabelPageView.m in Sources */,

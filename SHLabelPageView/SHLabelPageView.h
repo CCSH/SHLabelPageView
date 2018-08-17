@@ -28,6 +28,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) UIFont *fontSize;
 //选中颜色(默认是黑色)
 @property (nonatomic, strong) UIColor *selectedColor;
+//当前选中下方颜色(默认是红)
+@property (nonatomic, strong) UIColor *currentColor;
 //偏移量(设置滑动中的效果)
 @property (nonatomic, assign) CGFloat contentOffsetX;
 //选中线的Y

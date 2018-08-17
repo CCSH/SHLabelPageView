@@ -9,4 +9,5 @@ Pod::Spec.new do |s|
     s.source       = { :git => "https://github.com/CCSH/SHLabelPageView.git", :tag => s.version }
     s.source_files = "SHLabelPageView/*.{h,m}"
     s.requires_arc = true
+    s.dependency "UIView+SHExtension","0.0.1"
 end
