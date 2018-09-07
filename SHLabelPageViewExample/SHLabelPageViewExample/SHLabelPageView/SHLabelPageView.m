@@ -52,6 +52,10 @@
     
     _contentOffsetX = contentOffsetX;
     
+    if (contentOffsetX == self.index) {//已经设置完毕 -> 界面滚动 -> 触发本方法
+        return;
+    }
+    
     if (contentOffsetX < 0) {//最左边
         return;
     }

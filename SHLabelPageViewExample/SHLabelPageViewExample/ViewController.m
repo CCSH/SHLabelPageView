@@ -34,6 +34,7 @@
     //回调
     pageView.pageViewBlock = ^(SHLabelPageView *pageView) {
         self.num.text = [NSString stringWithFormat:@"当前内容\n 《%@》",pageView.pageList[pageView.index]];
+        //最好不要加动画
         [self.bigScroll setContentOffset:CGPointMake(pageView.index *self.view.frame.size.width, 0) animated:NO];
     };
     
@@ -51,6 +52,7 @@
     if ([scrollView isEqual:self.bigScroll]) {
 
         CGFloat value = scrollView.contentOffset.x / scrollView.frame.size.width;
+        
         //设置偏移
         [SHLabelPageView shareSHLabelPageView].contentOffsetX = value;
     }
