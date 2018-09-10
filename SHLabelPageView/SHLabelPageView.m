@@ -158,7 +158,7 @@
         //设置标签
         UILabel *label = [self getChannelLab];
         label.text = channel;
-        [self.pageScroll addSubview:label];
+       
         
         if (self.type == SHLabelPageType_more) {
             label.frame = CGRectMake(view_x, 0, [self getChannelWithText:channel], view_h);
@@ -169,8 +169,10 @@
         view_x += label.width;
         label.tag = 10 + i;
         i++;
+        
+        [self.pageScroll addSubview:label];
     }
-    self.pageScroll.contentSize = CGSizeMake((self.type == SHLabelPageType_more)?(view_x + 8):self.width, 0);
+    self.pageScroll.contentSize = CGSizeMake(self.width, 0);
     
     [self.pageScroll addSubview:self.currentLine];
     
@@ -195,7 +197,7 @@
     
     CGSize size = [text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, self.pageScroll.height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.fontSize?:[UIFont systemFontOfSize:18]} context:nil].size;
     
-    return size.width + 20;
+    return ceil(size.width) + 20;
 }
 
 #pragma mark 标签点击

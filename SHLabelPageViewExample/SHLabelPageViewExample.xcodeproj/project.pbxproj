@@ -16,7 +16,7 @@
 		5C020D8521241A7900F8AFBB /* SHLabelPageViewExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C020D8421241A7900F8AFBB /* SHLabelPageViewExampleTests.m */; };
 		5C020D9021241A7900F8AFBB /* SHLabelPageViewExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C020D8F21241A7900F8AFBB /* SHLabelPageViewExampleUITests.m */; };
 		5C020DA021241AE800F8AFBB /* SHLabelPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C020D9F21241AE800F8AFBB /* SHLabelPageView.m */; };
-		5C3D232E2126CDA400E46D76 /* UIView+SHExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3D232C2126CDA400E46D76 /* UIView+SHExtension.m */; };
+		5C5CFF812145F67900C95E90 /* UIView+SHExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5CFF7F2145F67900C95E90 /* UIView+SHExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,8 +55,8 @@
 		5C020D9121241A7900F8AFBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C020D9E21241AE800F8AFBB /* SHLabelPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHLabelPageView.h; sourceTree = "<group>"; };
 		5C020D9F21241AE800F8AFBB /* SHLabelPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHLabelPageView.m; sourceTree = "<group>"; };
-		5C3D232C2126CDA400E46D76 /* UIView+SHExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SHExtension.m"; sourceTree = "<group>"; };
-		5C3D232D2126CDA400E46D76 /* UIView+SHExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SHExtension.h"; sourceTree = "<group>"; };
+		5C5CFF7F2145F67900C95E90 /* UIView+SHExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SHExtension.m"; sourceTree = "<group>"; };
+		5C5CFF802145F67900C95E90 /* UIView+SHExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SHExtension.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +107,7 @@
 		5C020D6A21241A7800F8AFBB /* SHLabelPageViewExample */ = {
 			isa = PBXGroup;
 			children = (
-				5C3D232B2126CDA400E46D76 /* Helper(帮助类) */,
+				5C5CFF7E2145F67900C95E90 /* UIView+SHExtension */,
 				5C020D9D21241AE800F8AFBB /* SHLabelPageView */,
 				5C020D6B21241A7800F8AFBB /* AppDelegate.h */,
 				5C020D6C21241A7800F8AFBB /* AppDelegate.m */,
@@ -149,13 +149,13 @@
 			path = SHLabelPageView;
 			sourceTree = "<group>";
 		};
-		5C3D232B2126CDA400E46D76 /* Helper(帮助类) */ = {
+		5C5CFF7E2145F67900C95E90 /* UIView+SHExtension */ = {
 			isa = PBXGroup;
 			children = (
-				5C3D232C2126CDA400E46D76 /* UIView+SHExtension.m */,
-				5C3D232D2126CDA400E46D76 /* UIView+SHExtension.h */,
+				5C5CFF802145F67900C95E90 /* UIView+SHExtension.h */,
+				5C5CFF7F2145F67900C95E90 /* UIView+SHExtension.m */,
 			);
-			path = "Helper(帮助类)";
+			path = "UIView+SHExtension";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,10 +289,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C020D7021241A7800F8AFBB /* ViewController.m in Sources */,
-				5C3D232E2126CDA400E46D76 /* UIView+SHExtension.m in Sources */,
 				5C020D7B21241A7900F8AFBB /* main.m in Sources */,
 				5C020D6D21241A7800F8AFBB /* AppDelegate.m in Sources */,
 				5C020DA021241AE800F8AFBB /* SHLabelPageView.m in Sources */,
+				5C5CFF812145F67900C95E90 /* UIView+SHExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

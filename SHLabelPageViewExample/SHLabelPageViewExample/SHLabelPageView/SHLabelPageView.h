@@ -22,6 +22,8 @@ typedef enum : NSUInteger {
 
 //数组
 @property (nonatomic, strong) NSArray *pageList;
+//类型
+@property (nonatomic, assign) SHLabelPageType type;
 //当前位置(默认是0)
 @property (nonatomic, assign) NSInteger index;
 //字体大小(默认是18)
@@ -36,8 +38,6 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) CGFloat currentY;
 //回调(标签点击回调)
 @property (nonatomic, copy) void(^pageViewBlock)(SHLabelPageView *pageView);
-//类型
-@property (nonatomic, assign) SHLabelPageType type;
 
 //初始化
 + (instancetype)shareSHLabelPageView;

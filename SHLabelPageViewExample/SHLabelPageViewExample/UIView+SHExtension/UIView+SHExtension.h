@@ -33,5 +33,4 @@
 //位置(X、Y)
 @property (nonatomic, assign) CGPoint origin;
 
-
 @end
