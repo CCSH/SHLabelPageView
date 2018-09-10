@@ -22,6 +22,11 @@
 
 @implementation SHLabelPageView
 
+//标签tag
+static NSInteger labTag = 10000000000;
+//标签左右间距
+static CGFloat space = 20;
+
 #pragma mark - 私有方法
 #pragma mark 初始化
 + (instancetype)shareSHLabelPageView{
@@ -34,6 +39,7 @@
     return labelPageView;
 }
 
+#pragma mark SET
 - (void)setIndex:(NSInteger)index{
     
     if (_index == index) {
@@ -41,8 +47,9 @@
     }
     
     _index = index;
-    
+    //刷新界面
     [self reloadPage];
+    //回调
     if (self.pageViewBlock) {
         self.pageViewBlock(self);
     }
@@ -60,66 +67,75 @@
         return;
     }
     
-    if ((contentOffsetX - (self.pageList.count - 1)) > 0) {//最右边
+    if (contentOffsetX > self.pageList.count - 1) {//最右边
         return;
     }
     
-    NSUInteger leftIndex = (int)contentOffsetX;
-    NSUInteger rightIndex = leftIndex + 1;
+    //左右位置
+    NSInteger leftIndex = (NSInteger)contentOffsetX;
+    NSInteger rightIndex = leftIndex + 1;
     
     //取出左右的视图
-    UILabel *labelLeft  = [self.pageScroll viewWithTag:(leftIndex + 10)];
-    UILabel *labelRight = [self.pageScroll viewWithTag:(rightIndex + 10)];
+    UILabel *leftLab  = [self.pageScroll viewWithTag:(leftIndex + labTag)];
+    UILabel *rightLab = [self.pageScroll viewWithTag:(rightIndex + labTag)];
     
     //增加下划线动画
     CGFloat scale = 0;
+    
     //文字颜色
     CGFloat scaleRight = 0;
     CGFloat scaleLeft = 0;
-    //间隔
-    CGFloat margin = labelRight.centerX - labelLeft.centerX;
     
+    //间隔
+    CGFloat margin = rightLab.centerX - leftLab.centerX;
+    
+    //设置 X 变化
     if (self.index > leftIndex) {//右滑
         
-        if (contentOffsetX - leftIndex > 0.5) {//刚开始 X减小 宽度增大
-            // 0 ~ 1
+        if (contentOffsetX - leftIndex >= 0.5) {//首先
+            //宽度增大 0 ~ 1
             scale = (1 - (contentOffsetX - leftIndex))*2;
-            self.currentLine.x = (labelLeft.centerX - 10) + (1 - scale)*margin;
+            //X减小
+            self.currentLine.x = (leftLab.centerX - 10) + (1 - scale)*margin;
+        }else{//然后
             
-        }else{//然后 宽度减小
-            
-            // 1 ~ 0
+            //宽度减小 1 ~ 0
             scale = ((contentOffsetX - leftIndex))*2;
+            //X不变
+            self.currentLine.x = (leftLab.centerX - 10);
         }
-        
         //右边边颜色越来越小
         scaleRight = 0.5 + (contentOffsetX - leftIndex)/2;
         scaleLeft = 0.5 + (1 - (contentOffsetX - leftIndex))/2;
     }
     
     if (self.index < rightIndex) {//左滑
-        
-        if (rightIndex - contentOffsetX > 0.5){//刚开始 X不变 宽度增大
+
+        if (rightIndex - contentOffsetX > 0.5){//首先
             
-            // 0 ~ 1
+            //宽度增大 0 ~ 1
             scale = (1 - (rightIndex - contentOffsetX))*2;
+            //X不变
+            self.currentLine.x = (leftLab.centerX - 10);
+        }else{//然后
             
-        }else{//然后 X减小 宽度减小
-            // 1 ~ 0
+            //宽度减小 1 ~ 0
             scale = (rightIndex - contentOffsetX)*2;
-            self.currentLine.x = (labelRight.centerX - 10) - scale*margin;
+            //X减小
+            self.currentLine.x = (rightLab.centerX - 10) - scale*margin;
         }
-        
+
         //左边边颜色越来越小
         scaleLeft = 0.5 + (rightIndex - contentOffsetX)/2;
         scaleRight = 0.5 + (1 - (rightIndex - contentOffsetX))/2;
     }
     
-    //改变文字颜色
-    labelLeft.textColor  = [self.selectedColor?:[UIColor blackColor] colorWithAlphaComponent:scaleLeft];
-    labelRight.textColor = [self.selectedColor?:[UIColor blackColor] colorWithAlphaComponent:scaleRight];
-    
+    //设置 width 变化
     self.currentLine.width = 20 + scale*margin;
+    
+    //设置左右视图颜色变化
+    leftLab.textColor  = [self.selectedColor?:[UIColor blackColor] colorWithAlphaComponent:scaleLeft];
+    rightLab.textColor = [self.selectedColor?:[UIColor blackColor] colorWithAlphaComponent:scaleRight];
     
     if (leftIndex == contentOffsetX) {
         self.index = leftIndex;
@@ -139,43 +155,43 @@
     }else{
         self.currentLine.y = self.pageScroll.height/2 + (self.fontSize.lineHeight?:[UIFont systemFontOfSize:18].lineHeight)/2 + 4;
     }
+    self.currentLine.width = 20;
     self.currentLine.backgroundColor = self.currentColor?:[UIColor redColor];
     
     //设置标签
     CGFloat view_h = self.pageScroll.bounds.size.height;
+    
     //间隔
-    CGFloat view_x = 8;
-    CGFloat view_width = 0;
+    __block  CGFloat view_x = 8;
+    __block CGFloat view_width = 0;
     
     if (self.type == SHLabelPageType_one) {
-        view_x = 20;
+        view_x = 30;
         view_width = (self.width - 2*view_x)/self.pageList.count;
     }
     
-    int i = 0;
-    for (NSString *channel in self.pageList) {
-        
+    //设置内容
+    [self.pageList enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //设置标签
         UILabel *label = [self getChannelLab];
-        label.text = channel;
-       
+        label.text = obj;
         
-        if (self.type == SHLabelPageType_more) {
-            label.frame = CGRectMake(view_x, 0, [self getChannelWithText:channel], view_h);
-        }else{
+        
+        if (self.type == SHLabelPageType_one) {
             label.frame = CGRectMake(view_x, 0, view_width, view_h);
+        }else{
+            label.frame = CGRectMake(view_x, 0, [self getChannelWithText:obj], view_h);
         }
         
         view_x += label.width;
-        label.tag = 10 + i;
-        i++;
+        label.tag = idx + labTag;
         
         [self.pageScroll addSubview:label];
-    }
+    }];
+
     self.pageScroll.contentSize = CGSizeMake(self.width, 0);
-    
     [self.pageScroll addSubview:self.currentLine];
-    
+    //刷新界面
     [self reloadPage];
 }
 
@@ -197,13 +213,13 @@
     
     CGSize size = [text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, self.pageScroll.height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.fontSize?:[UIFont systemFontOfSize:18]} context:nil].size;
     
-    return ceil(size.width) + 20;
+    return ceil(size.width) + space;
 }
 
 #pragma mark 标签点击
 - (void)labelClick:(UITapGestureRecognizer *)tap{
     
-    self.index = tap.view.tag - 10;
+    self.index = tap.view.tag - labTag;
 }
 
 #pragma mark 刷新视图
@@ -217,10 +233,9 @@
     NSLog(@"\n当前位置 === %@",self.pageList[self.index]);
     
     //取出当前的标签
-    UILabel *currentLab = [self.pageScroll viewWithTag:self.index + 10];
+    UILabel *currentLab = [self.pageScroll viewWithTag:self.index + labTag];
     
     if (self.type == SHLabelPageType_more) {
-        
         
         //设置scroll居中
         CGFloat offsetX = currentLab.centerX - self.pageScroll.width * 0.5;
@@ -237,12 +252,13 @@
     
     //改变颜色
     for (UILabel *label in self.pageScroll.subviews) {
-        if (label.tag >= 10 && label.tag < (self.pageList.count + 10)) {
+        if (label.tag >= labTag && label.tag < (self.pageList.count + labTag)) {
             //未选中颜色
             label.textColor = [self.selectedColor?:[UIColor blackColor] colorWithAlphaComponent:0.5];
         }
     }
     
+    self.currentLine.width = 20;
     //设置选中下划线
     [UIView animateWithDuration:0.25 animations:^{
         self.currentLine.centerX = currentLab.centerX;
