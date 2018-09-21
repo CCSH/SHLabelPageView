@@ -176,11 +176,10 @@ static CGFloat space = 20;
         UILabel *label = [self getChannelLab];
         label.text = obj;
         
-        
         if (self.type == SHLabelPageType_one) {
             label.frame = CGRectMake(view_x, 0, view_width, view_h);
         }else{
-            label.frame = CGRectMake(view_x, 0, [self getChannelWithText:obj], view_h);
+            label.frame = CGRectMake(view_x, 0, [self getChannelWithText:obj] + space, view_h);
         }
         
         view_x += label.width;
@@ -189,7 +188,7 @@ static CGFloat space = 20;
         [self.pageScroll addSubview:label];
     }];
 
-    self.pageScroll.contentSize = CGSizeMake(self.width, 0);
+    self.pageScroll.contentSize = CGSizeMake(view_x, 0);
     [self.pageScroll addSubview:self.currentLine];
     //刷新界面
     [self reloadPage];
@@ -213,7 +212,7 @@ static CGFloat space = 20;
     
     CGSize size = [text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, self.pageScroll.height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.fontSize?:[UIFont systemFontOfSize:18]} context:nil].size;
     
-    return ceil(size.width) + space;
+    return ceil(size.width);
 }
 
 #pragma mark 标签点击
@@ -230,25 +229,8 @@ static CGFloat space = 20;
         return;
     }
     
-    NSLog(@"\n当前位置 === %@",self.pageList[self.index]);
-    
     //取出当前的标签
     UILabel *currentLab = [self.pageScroll viewWithTag:self.index + labTag];
-    
-    if (self.type == SHLabelPageType_more) {
-        
-        //设置scroll居中
-        CGFloat offsetX = currentLab.centerX - self.pageScroll.width * 0.5;
-        CGFloat offsetMaxX = self.pageScroll.contentSize.width - self.pageScroll.width;
-        
-        if (offsetX < 0){
-            offsetX = 0;
-        }
-        if (offsetX > offsetMaxX) {
-            offsetX = offsetMaxX;
-        }
-        [self.pageScroll setContentOffset:CGPointMake(offsetX, 0) animated:YES];
-    }
     
     //改变颜色
     for (UILabel *label in self.pageScroll.subviews) {
@@ -264,6 +246,24 @@ static CGFloat space = 20;
         self.currentLine.centerX = currentLab.centerX;
         //选中颜色
         currentLab.textColor = self.selectedColor?:[UIColor blackColor];
+    }completion:^(BOOL finished) {
+        
+        if (self.type == SHLabelPageType_more) {//多个标签
+            //设置scroll居中
+            CGFloat offsetX = currentLab.centerX - self.pageScroll.width * 0.5;
+            CGFloat offsetMaxX = self.pageScroll.contentSize.width - self.pageScroll.width;
+            
+            //左边
+            if (offsetX < 0){
+                offsetX = 0;
+            }
+            //右边
+            if (offsetX > offsetMaxX) {
+                offsetX = offsetMaxX;
+            }
+            
+            [self.pageScroll setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+        }
     }];
 }
 
