@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = "SHLabelPageView"
-    s.version      = "1.0.5"
+    s.version      = "2.0.0"
     s.summary      = "标签页"
     s.license      = "MIT"
     s.authors      = { "CSH" => "624089195@qq.com" }
