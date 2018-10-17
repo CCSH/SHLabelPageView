@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *bigScroll;
 @property (weak, nonatomic) IBOutlet UILabel *num;
 
+@property (nonatomic, strong) SHLabelPageView *pageView;
+
 @end
 
 @implementation ViewController
@@ -26,12 +28,12 @@
     
    
     //初始化
-    SHLabelPageView *pageView = [SHLabelPageView shareSHLabelPageView];
-    pageView.frame = CGRectMake(0, 64, self.view.frame.size.width, 50);
-    pageView.checkColor = [UIColor orangeColor];
-    pageView.uncheckColor = [UIColor blackColor];
+    self.pageView = [[SHLabelPageView alloc]init];
+    self.pageView.frame = CGRectMake(0, 64, self.view.frame.size.width, 50);
+    self.pageView.checkColor = [UIColor orangeColor];
+    self.pageView.uncheckColor = [UIColor blackColor];
     //回调
-    pageView.pageViewBlock = ^(SHLabelPageView *pageView) {
+    self.pageView.pageViewBlock = ^(SHLabelPageView *pageView) {
         
         self.num.text = [NSString stringWithFormat:@"当前内容\n 《%@》",pageView.pageList[pageView.index]];
         //最好不要加动画
@@ -40,7 +42,7 @@
     
     [self btnAction:nil];
     
-    [self.view addSubview:pageView];
+    [self.view addSubview:self.pageView];
     
     
     
@@ -54,28 +56,27 @@
         CGFloat value = scrollView.contentOffset.x / scrollView.frame.size.width;
         
         //设置偏移
-        [SHLabelPageView shareSHLabelPageView].contentOffsetX = value;
+        self.pageView.contentOffsetX = value;
     }
 }
 - (IBAction)btnAction:(id)sender {
     
-    SHLabelPageView *pageView = [SHLabelPageView shareSHLabelPageView];
 
-    if (pageView.type == SHLabelPageType_one) {
+    if (self.pageView.type == SHLabelPageType_one) {
         
-        pageView.startX = 8;
-        pageView.type = SHLabelPageType_more;
-        pageView.pageList = @[@"头条",@"娱乐",@"热点",@"体育",@"泉州",@"网易号",@"财经",@"科技",@"汽车",@"时尚",@"图片",@"跟贴",@"房产",@"直播",@"轻松一刻",@"段子",@"军事",@"历史",@"家居",@"独家",@"游戏",@"健康",@"政务",@"哒哒趣闻",@"美女",@"NBA",@"社会",@"彩票",@"漫画",@"影视歌",@"中国足球",@"国际足球",@"CBA",@"跑步",@"手机",@"数码",@"移动互联",@"云课堂",@"态度公开课",@"旅游",@"读书",@"酒香",@"教育",@"亲子",@"暴雪游戏",@"情感",@"艺术",@"博客",@"论坛",@"型男",@"萌宠"];
-        pageView.index = 0;
+        self.pageView.startX = 8;
+        self.pageView.type = SHLabelPageType_more;
+        self.pageView.pageList = @[@"头条",@"娱乐",@"热点",@"体育",@"泉州",@"网易号",@"财经",@"科技",@"汽车",@"时尚",@"图片",@"跟贴",@"房产",@"直播",@"轻松一刻",@"段子",@"军事",@"历史",@"家居",@"独家",@"游戏",@"健康",@"政务",@"哒哒趣闻",@"美女",@"NBA",@"社会",@"彩票",@"漫画",@"影视歌",@"中国足球",@"国际足球",@"CBA",@"跑步",@"手机",@"数码",@"移动互联",@"云课堂",@"态度公开课",@"旅游",@"读书",@"酒香",@"教育",@"亲子",@"暴雪游戏",@"情感",@"艺术",@"博客",@"论坛",@"型男",@"萌宠"];
+        self.pageView.index = 0;
     }else{
 
-        pageView.startX = 60;
-        pageView.type = SHLabelPageType_one;
-        pageView.pageList = @[@"关注",@"热门",@"最新"];
-        pageView.index = 1;
+        self.pageView.startX = 50;
+        self.pageView.type = SHLabelPageType_one;
+        self.pageView.pageList = @[@"关注",@"热门",@"最新"];
+        self.pageView.index = 1;
     }
 
-    [pageView reloadView];
+    [self.pageView reloadView];
     
     [self addScrollPage];
 }
@@ -86,7 +87,7 @@
         [view removeFromSuperview];
     }
     
-    for (int i = 0; i < [SHLabelPageView shareSHLabelPageView].pageList.count; i++) {
+    for (int i = 0; i < self.pageView.pageList.count; i++) {
         
         UILabel *lab = [[UILabel alloc]init];
         lab.frame = CGRectMake(i*self.view.frame.size.width,30, self.view.frame.size.width, 30);
@@ -95,7 +96,7 @@
         lab.text = [NSString stringWithFormat:@"当前是第  %d   个",i];
         [self.bigScroll addSubview:lab];
     }
-    self.bigScroll.contentSize = CGSizeMake([SHLabelPageView shareSHLabelPageView].pageList.count * self.view.frame.size.width, self.bigScroll.frame.size.height);
+    self.bigScroll.contentSize = CGSizeMake(self.pageView.pageList.count * self.view.frame.size.width, self.bigScroll.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning {

@@ -27,17 +27,6 @@ static NSInteger labTag = 10000000000;
 static CGFloat space = 20;
 
 #pragma mark - 私有方法
-#pragma mark 初始化
-+ (instancetype)shareSHLabelPageView{
-    
-    static SHLabelPageView *labelPageView;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        labelPageView = [[self alloc]init];
-    });
-    return labelPageView;
-}
-
 #pragma mark SET
 - (void)setIndex:(NSInteger)index{
     
@@ -244,15 +233,20 @@ static CGFloat space = 20;
             CGFloat offsetX = currentLab.centerX - self.pageScroll.width * 0.5;
             CGFloat offsetMaxX = self.pageScroll.contentSize.width - self.pageScroll.width;
             
-            //左边
-            if (offsetX < 0){
-                offsetX = 0;
+            if (offsetMaxX < 0) {//不足一屏幕则不进行处理
+                return ;
             }
-            //右边
+            
+            //最右边
             if (offsetX > offsetMaxX) {
                 offsetX = offsetMaxX;
             }
             
+            //最左边
+            if (offsetX < 0){
+                offsetX = 0;
+            }
+           
             [self.pageScroll setContentOffset:CGPointMake(offsetX, 0) animated:YES];
         }
     }];

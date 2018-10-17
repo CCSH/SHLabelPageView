@@ -50,9 +50,6 @@ typedef enum : NSUInteger {
 //回调(标签点击回调)
 @property (nonatomic, copy) void(^pageViewBlock)(SHLabelPageView *pageView);
 
-//初始化
-+ (instancetype)shareSHLabelPageView;
-
 //刷新
 - (void)reloadView;
 
