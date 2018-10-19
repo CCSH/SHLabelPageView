@@ -202,9 +202,11 @@ static NSInteger labTag = 10000000000;
 
     
     if (contentOffSetY) {
-        self.pageScroll.contentOffset = CGPointMake(contentOffSetY, 0);
+        
         self.pageScroll.contentSize = CGSizeMake(view_x - self.spaceW, 0);
+        self.pageScroll.contentOffset = CGPointMake(contentOffSetY, 0);
     }else{
+        
         self.pageScroll.contentSize = CGSizeMake(view_x, 0);
     }
     
@@ -356,7 +358,7 @@ static NSInteger labTag = 10000000000;
 - (UIView *)line{
     if (!_line) {
         _line = [[UIView alloc]init];
-        _line.backgroundColor = [UIColor grayColor];
+        _line.backgroundColor = (self.lineColor?:[UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1]);
         [self addSubview:_line];
     }
     return _line;

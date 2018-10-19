@@ -57,6 +57,9 @@ typedef enum : NSUInteger {
 //选中线的Y(默认距离视图下方 3)
 @property (nonatomic, assign) CGFloat currentY;
 
+//分割线颜色(默认 237，237，237)
+@property (nonatomic, strong) UIColor *lineColor;
+
 //回调(标签点击回调)
 @property (nonatomic, copy) void(^pageViewBlock)(SHLabelPageView *pageView);
 
