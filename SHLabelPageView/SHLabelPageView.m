@@ -23,8 +23,6 @@
 
 //标签tag
 static NSInteger labTag = 10000000000;
-//标签左右间距
-static CGFloat space = 20;
 
 #pragma mark - 私有方法
 #pragma mark SET
@@ -142,33 +140,74 @@ static CGFloat space = 20;
     CGFloat view_h = self.pageScroll.bounds.size.height;
     
     //间隔
-    __block CGFloat view_x = self.startX;;
-    __block CGFloat view_width = 0;
+    __block CGFloat view_x = self.startX;
+    __block CGFloat view_start = 0;
+    __block CGFloat contentOffSetY = 0;
     
     if (self.type == SHLabelPageType_one) {
-        
-        view_width = (self.width - 2*view_x)/self.pageList.count;
+        view_start = (self.width - 2*self.startX)/(self.pageList.count + 1);
     }
     
     //设置内容
     [self.pageList enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
         //设置标签
         UILabel *label = [self getChannelLab];
         label.text = obj;
+        label.tag = labTag + idx;
         
-        if (self.type == SHLabelPageType_one) {
-            label.frame = CGRectMake(view_x, 0, view_width, view_h);
-        }else{
-            label.frame = CGRectMake(view_x, 0, [self getChannelWithText:obj] + space, view_h);
+        label.frame = CGRectMake(view_x, 0, [self getChannelWithText:obj], view_h);
+        
+        //设置frame
+        switch (self.type) {
+            case SHLabelPageType_one://一页
+            {
+                //设置了间距
+                if (self.spaceW) {
+                    
+                    if (idx == 0) {//第一个
+                        label.x = 0;
+                    }
+                    if (idx == self.pageList.count - 1) {//最后一个
+                        //设置整体偏移
+                        contentOffSetY = -(self.width -  label.maxX)/2;
+                    }
+                }else{//没有设置间距
+                    
+                    label.centerX = self.startX + ((idx + 1)*view_start);
+                }
+            }
+                break;
+            default:
+                break;
         }
         
-        view_x += label.width;
-        label.tag = idx + labTag;
+        view_x += label.width + self.spaceW;
         
+
+        CGRect frame = [self.labelTag[obj] CGRectValue];
+        //是否存在标记
+        if (frame.size.height) {
+            
+            //添加标记
+            CALayer *layer = [CALayer layer];
+            layer.frame = frame;
+            layer.cornerRadius = frame.size.height/2;
+            layer.backgroundColor = (self.tagColor?:[UIColor redColor]).CGColor;
+            [label.layer addSublayer:layer];
+        }
+       
         [self.pageScroll addSubview:label];
     }];
 
-    self.pageScroll.contentSize = CGSizeMake(view_x, 0);
+    
+    if (contentOffSetY) {
+        self.pageScroll.contentOffset = CGPointMake(contentOffSetY, 0);
+        self.pageScroll.contentSize = CGSizeMake(view_x - self.spaceW, 0);
+    }else{
+        self.pageScroll.contentSize = CGSizeMake(view_x, 0);
+    }
+    
     [self.pageScroll addSubview:self.currentLine];
     //刷新界面
     [self reloadPage];

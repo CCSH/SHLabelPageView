@@ -22,12 +22,28 @@ typedef enum : NSUInteger {
 @interface SHLabelPageView : UIView
 
 //数组
-@property (nonatomic, strong) NSArray *pageList;
+@property (nonatomic, strong) NSArray <NSString *>*pageList;
 //类型
 @property (nonatomic, assign) SHLabelPageType type;
 //当前位置(默认是0)
 @property (nonatomic, assign) NSInteger index;
 
+//标签开始的X(如果是 一页的话就是居中)
+@property (nonatomic, assign) CGFloat startX;
+//标签间间隔
+//如果一页设置了 spaceW 则 startX 失效
+//如果一页不设置 spaceW 则去除 左右startX 均分)
+@property (nonatomic, assign) CGFloat spaceW;
+
+//偏移量(设置滑动中的效果)
+@property (nonatomic, assign) CGFloat contentOffsetX;
+
+//标记
+//key   标签名字
+//value frame
+@property (nonatomic, strong) NSDictionary *labelTag;
+//标记颜色（默认红色）
+@property (nonatomic, strong) UIColor *tagColor;
 
 //标签字体大小(默认是18)
 @property (nonatomic, strong) UIFont *fontSize;
@@ -40,12 +56,6 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) UIColor *currentColor;
 //选中线的Y(默认距离视图下方 3)
 @property (nonatomic, assign) CGFloat currentY;
-
-//标签开始的X(默认 0)
-@property (nonatomic, assign) CGFloat startX;
-
-//偏移量(设置滑动中的效果)
-@property (nonatomic, assign) CGFloat contentOffsetX;
 
 //回调(标签点击回调)
 @property (nonatomic, copy) void(^pageViewBlock)(SHLabelPageView *pageView);
