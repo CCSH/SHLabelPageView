@@ -184,23 +184,21 @@ static NSInteger labTag = 10000000000;
         
         view_x += label.width + self.spaceW;
         
+        [self.pageScroll addSubview:label];
 
         CGRect frame = [self.labelTag[obj] CGRectValue];
         //是否存在标记
         if (frame.size.height) {
             
             //添加标记
-            CALayer *layer = [CALayer layer];
+            UIView *layer = [[UIView alloc]init];
             layer.frame = frame;
-            layer.cornerRadius = frame.size.height/2;
-            layer.backgroundColor = (self.tagColor?:[UIColor redColor]).CGColor;
-            [label.layer addSublayer:layer];
+            layer.layer.cornerRadius = frame.size.height/2;
+            layer.backgroundColor = (self.tagColor?:[UIColor redColor]);
+            [label addSubview:layer];
         }
-       
-        [self.pageScroll addSubview:label];
     }];
 
-    
     if (contentOffSetY) {
         
         self.pageScroll.contentSize = CGSizeMake(view_x - self.spaceW, 0);
@@ -222,6 +220,7 @@ static NSInteger labTag = 10000000000;
     label.textAlignment = NSTextAlignmentCenter;
     label.font = self.fontSize?:[UIFont systemFontOfSize:18];
     label.userInteractionEnabled = YES;
+//    label.backgroundColor = [UIColor whiteColor];
     
     [label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelClick:)]];
     
@@ -348,6 +347,7 @@ static NSInteger labTag = 10000000000;
         _pageScroll.origin = CGPointMake(0, 0);
         _pageScroll.backgroundColor = [UIColor clearColor];
         _pageScroll.showsHorizontalScrollIndicator = NO;
+        _pageScroll.opaque = NO;
         // 设置下划线
         [self addSubview:_pageScroll];
     }
