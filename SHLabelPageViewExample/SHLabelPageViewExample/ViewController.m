@@ -23,25 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    CGRect frame = CGRectMake(90, 50, 15, 15);
-    //添加标记
-//    UIView *layer = [[UIView alloc]init];
-//    layer.frame = frame;
-//    layer.backgroundColor = [UIColor redColor];
-    
-    //添加标记
-    CALayer *layer = [CALayer layer];
-    layer.frame = frame;
-    layer.cornerRadius = frame.size.height/2;
-    layer.backgroundColor = [UIColor redColor].CGColor;
-    
-    UILabel *lab = [[UILabel alloc]init];
-    lab.text = @"12345789765432123456789";
-    lab.frame = CGRectMake(0, 300, self.view.width, 100);
-    lab.backgroundColor = [UIColor orangeColor];
-    [self.view addSubview:lab];
-    
-    [lab.layer addSublayer:layer];
     
     self.bigScroll.delegate = self;
     
@@ -93,7 +74,7 @@
 //        self.pageView.spaceW = 10;
         self.pageView.type = SHLabelPageType_one;
         self.pageView.pageList = @[@"关注",@"热门",@"最新"];
-        self.pageView.labelTag = @{@"关注":[NSValue valueWithCGRect:CGRectMake(10, 20, 8, 8)]};
+        self.pageView.labelTag = @{@"关注":[NSValue valueWithCGRect:CGRectMake(32, 15, 8, 8)]};
         self.pageView.index = 1;
     }
 
