@@ -142,7 +142,7 @@ static NSInteger labTag = 10000000000;
     //间隔
     __block CGFloat view_x = self.startX;
     __block CGFloat view_start = 0;
-    __block CGFloat contentOffSetY = 0;
+    __block CGFloat contentSetX = 0;
     
     if (self.type == SHLabelPageType_one) {
         view_start = (self.width - 2*self.startX)/(self.pageList.count + 1);
@@ -169,8 +169,8 @@ static NSInteger labTag = 10000000000;
                         btn.x = 0;
                     }
                     if (idx == self.pageList.count - 1) {//最后一个
-                        //设置整体偏移
-                        contentOffSetY = -(self.width -  btn.maxX)/2;
+                        //计算位置
+                        contentSetX = (self.width -  btn.maxX)/2;
                     }
                 }else{//没有设置间距
                     
@@ -199,10 +199,10 @@ static NSInteger labTag = 10000000000;
         }
     }];
 
-    if (contentOffSetY) {
+    if (contentSetX) {
         
         self.pageScroll.contentSize = CGSizeMake(view_x - self.spaceW, 0);
-        self.pageScroll.contentOffset = CGPointMake(contentOffSetY, 0);
+        self.pageScroll.x = contentSetX;
     }else{
         
         self.pageScroll.contentSize = CGSizeMake(view_x, 0);
