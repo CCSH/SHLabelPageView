@@ -47,6 +47,8 @@ typedef enum : NSUInteger {
 
 //标签字体大小(默认是18)
 @property (nonatomic, strong) UIFont *fontSize;
+//标签未选中字体大小(默认是18)
+@property (nonatomic, strong) UIFont *unFontSize;
 //标签选中颜色(默认是黑色)
 @property (nonatomic, strong) UIColor *checkColor;
 //标签未选中颜色(默认是黑色 0.3)

@@ -31,6 +31,7 @@
     self.pageView.frame = CGRectMake(0, 64, self.view.frame.size.width, 50);
     self.pageView.checkColor = [UIColor orangeColor];
     self.pageView.uncheckColor = [UIColor blackColor];
+    self.pageView.unFontSize = [UIFont systemFontOfSize:16];
     //回调
     self.pageView.pageViewBlock = ^(SHLabelPageView *pageView) {
         
@@ -42,7 +43,6 @@
     [self btnAction:nil];
     
     [self.view addSubview:self.pageView];
-    
     
     
     [self addScrollPage];

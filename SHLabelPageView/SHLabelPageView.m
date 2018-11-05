@@ -254,6 +254,7 @@ static NSInteger labTag = 10000000000;
         if (btn.tag >= labTag && btn.tag < (self.pageList.count + labTag)) {
             //未选中颜色
             [btn setTitleColor:[self getColorWithScale:0] forState:0];
+            btn.titleLabel.font = self.unFontSize?:[UIFont systemFontOfSize:18];
         }
     }
     
@@ -263,6 +264,8 @@ static NSInteger labTag = 10000000000;
         self.currentLine.centerX = currentBtn.centerX;
         //选中颜色
         [currentBtn setTitleColor:[self getColorWithScale:1] forState:0];
+        currentBtn.titleLabel.font = self.fontSize?:[UIFont systemFontOfSize:18];
+        
     }completion:^(BOOL finished) {
         
         if (self.type == SHLabelPageType_more) {//多个标签
