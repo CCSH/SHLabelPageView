@@ -37,7 +37,6 @@ static NSInteger labTag = 10000000000;
         self.fontSize = [UIFont boldSystemFontOfSize:16];
         self.unFontSize = [UIFont systemFontOfSize:16];
         
-        self.currentY = self.height - self.currentLine.height - 3;
         self.currentColor = [UIColor redColor];
         
         self.checkColor = [UIColor blackColor];
@@ -404,6 +403,8 @@ static NSInteger labTag = 10000000000;
     if (!self.pageList.count) {
         return;
     }
+    
+    self.currentY = self.currentY?:(self.height - self.currentLine.height - 3);
     
     //配置UI
     [self configUI];
