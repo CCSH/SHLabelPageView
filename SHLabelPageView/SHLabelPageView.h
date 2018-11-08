@@ -32,7 +32,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) CGFloat startX;
 //标签间间隔
 //如果一页设置了 spaceW 则 startX 失效
-//如果一页不设置 spaceW 则去除 左右startX 均分)
+//如果一页不设置 spaceW 则去除 2*startX 均分)
 @property (nonatomic, assign) CGFloat spaceW;
 
 //偏移量(设置滑动中的效果)
@@ -45,9 +45,9 @@ typedef enum : NSUInteger {
 //标记颜色（默认红色）
 @property (nonatomic, strong) UIColor *tagColor;
 
-//标签字体大小(默认是18)
+//标签字体大小(默认是加粗16)
 @property (nonatomic, strong) UIFont *fontSize;
-//标签未选中字体大小(默认是18)
+//标签未选中字体大小(默认是16)
 @property (nonatomic, strong) UIFont *unFontSize;
 //标签选中颜色(默认是黑色)
 @property (nonatomic, strong) UIColor *checkColor;

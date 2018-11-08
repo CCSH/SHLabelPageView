@@ -23,7 +23,28 @@
 
 //标签tag
 static NSInteger labTag = 10000000000;
-
+#pragma mark - 初始化
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        
+        //初始化数据
+        self.lineColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1];
+        
+        self.tagColor = [UIColor redColor];
+        
+        self.fontSize = [UIFont boldSystemFontOfSize:16];
+        self.unFontSize = [UIFont systemFontOfSize:16];
+        
+        self.currentY = self.height - self.currentLine.height - 3;
+        self.currentColor = [UIColor redColor];
+        
+        self.checkColor = [UIColor blackColor];
+        self.uncheckColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+    }
+    return self;
+}
 #pragma mark - 私有方法
 #pragma mark SET
 - (void)setIndex:(NSInteger)index{
@@ -128,13 +149,9 @@ static NSInteger labTag = 10000000000;
     //设置滚动大小
     self.pageScroll.size = CGSizeMake(self.width, self.line.y);
     //选中的线
-    if (self.currentY) {
-        self.currentLine.y = self.currentY;
-    }else{
-        self.currentLine.y = self.pageScroll.height/2 + (self.fontSize.lineHeight?:[UIFont systemFontOfSize:18].lineHeight)/2 + 4;
-    }
+    self.currentLine.y = self.currentY;
     self.currentLine.width = 20;
-    self.currentLine.backgroundColor = self.currentColor?:[UIColor redColor];
+    self.currentLine.backgroundColor = self.currentColor;
     
     //设置标签
     CGFloat view_h = self.pageScroll.bounds.size.height;
@@ -194,7 +211,7 @@ static NSInteger labTag = 10000000000;
             CALayer *layer = [CALayer layer];
             layer.frame = frame;
             layer.cornerRadius = frame.size.height/2;
-            layer.backgroundColor = (self.tagColor?:[UIColor redColor]).CGColor;
+            layer.backgroundColor = self.tagColor.CGColor;
             [btn.layer addSublayer:layer];
         }
     }];
@@ -217,7 +234,7 @@ static NSInteger labTag = 10000000000;
 - (UIButton *)getChannelLab{
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.titleLabel.font = self.fontSize?:[UIFont systemFontOfSize:18];
+    btn.titleLabel.font = self.fontSize;
     
     [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -227,7 +244,7 @@ static NSInteger labTag = 10000000000;
 #pragma mark 获取宽度
 - (CGFloat)getChannelWithText:(NSString *)text{
     
-    CGSize size = [text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, self.pageScroll.height) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:self.fontSize?:[UIFont systemFontOfSize:18]} context:nil].size;
+    CGSize size = [text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, self.pageScroll.height) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:self.fontSize} context:nil].size;
     
     return ceil(size.width);
 }
@@ -242,7 +259,6 @@ static NSInteger labTag = 10000000000;
 - (void)reloadPage{
     
     if (self.index >= self.pageList.count) {
-        NSLog(@"数组超出了");
         return;
     }
     
@@ -251,10 +267,11 @@ static NSInteger labTag = 10000000000;
     
     //改变颜色
     for (UIButton *btn in self.pageScroll.subviews) {
+        //找到标签
         if (btn.tag >= labTag && btn.tag < (self.pageList.count + labTag)) {
             //未选中颜色
             [btn setTitleColor:[self getColorWithScale:0] forState:0];
-            btn.titleLabel.font = self.unFontSize?:[UIFont systemFontOfSize:18];
+            btn.titleLabel.font = self.unFontSize;
         }
     }
     
@@ -264,11 +281,12 @@ static NSInteger labTag = 10000000000;
         self.currentLine.centerX = currentBtn.centerX;
         //选中颜色
         [currentBtn setTitleColor:[self getColorWithScale:1] forState:0];
-        currentBtn.titleLabel.font = self.fontSize?:[UIFont systemFontOfSize:18];
+        //选中字体
+        currentBtn.titleLabel.font = self.fontSize;
         
     }completion:^(BOOL finished) {
         
-        if (self.type == SHLabelPageType_more) {//多个标签
+        if (self.type == SHLabelPageType_more) {//多个标签情况
             //设置scroll居中
             CGFloat offsetX = currentBtn.centerX - self.pageScroll.width * 0.5;
             CGFloat offsetMaxX = self.pageScroll.contentSize.width - self.pageScroll.width;
@@ -287,6 +305,7 @@ static NSInteger labTag = 10000000000;
                 offsetX = 0;
             }
            
+            //滚动
             [self.pageScroll setContentOffset:CGPointMake(offsetX, 0) animated:YES];
         }
     }];
@@ -296,9 +315,9 @@ static NSInteger labTag = 10000000000;
 - (UIColor *)getColorWithScale:(CGFloat)scale{
     
     //0 ~ 1
-    NSArray *uncheckColorArr = [self getRGBWithColor:self.uncheckColor?:[[UIColor blackColor] colorWithAlphaComponent:0.3]];
+    NSArray *uncheckColorArr = [self getRGBWithColor:self.uncheckColor];
     
-    NSArray *checkColorArr = [self getRGBWithColor:self.checkColor?:[UIColor blackColor]];
+    NSArray *checkColorArr = [self getRGBWithColor:self.checkColor];
     //(x + (y-x)*k)
     CGFloat red = [uncheckColorArr[0] floatValue] + ([checkColorArr[0] floatValue] - [uncheckColorArr[0] floatValue])*scale;
     CGFloat green = [uncheckColorArr[1] floatValue] + ([checkColorArr[1] floatValue] - [uncheckColorArr[1] floatValue])*scale;
@@ -358,7 +377,7 @@ static NSInteger labTag = 10000000000;
 - (UIView *)line{
     if (!_line) {
         _line = [[UIView alloc]init];
-        _line.backgroundColor = (self.lineColor?:[UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1]);
+        _line.backgroundColor = self.lineColor;
         [self addSubview:_line];
     }
     return _line;
@@ -379,14 +398,16 @@ static NSInteger labTag = 10000000000;
 #pragma mark - 刷新
 - (void)reloadView{
     
-    for (UIView *view in self.pageScroll.subviews) {
-        [view removeFromSuperview];
+    //移除以前的标签
+    [self.pageScroll.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    if (!self.pageList.count) {
+        return;
     }
     
-    if (self.pageList.count) {
-        //配置UI
-        [self configUI];
-    }
+    //配置UI
+    [self configUI];
+    
 }
 
 @end

@@ -12,7 +12,6 @@
 @interface ViewController ()<UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *bigScroll;
-@property (weak, nonatomic) IBOutlet UILabel *num;
 
 @property (nonatomic, strong) SHLabelPageView *pageView;
 
@@ -29,13 +28,9 @@
     //初始化
     self.pageView = [[SHLabelPageView alloc]init];
     self.pageView.frame = CGRectMake(0, 64, self.view.frame.size.width, 50);
-    self.pageView.checkColor = [UIColor orangeColor];
-    self.pageView.uncheckColor = [UIColor blackColor];
-    self.pageView.unFontSize = [UIFont systemFontOfSize:16];
     //回调
     self.pageView.pageViewBlock = ^(SHLabelPageView *pageView) {
         
-        self.num.text = [NSString stringWithFormat:@"当前内容\n 《%@》",pageView.pageList[pageView.index]];
         //最好不要加动画
         [self.bigScroll setContentOffset:CGPointMake(pageView.index *self.view.frame.size.width, 0) animated:NO];
     };
@@ -43,7 +38,6 @@
     [self btnAction:nil];
     
     [self.view addSubview:self.pageView];
-    
     
     [self addScrollPage];
 }
@@ -70,8 +64,8 @@
         self.pageView.index = 0;
     }else{
 
-        self.pageView.startX = 0;
-//        self.pageView.spaceW = 10;
+//        self.pageView.startX = 0;
+        self.pageView.spaceW = 30;
         self.pageView.type = SHLabelPageType_one;
         self.pageView.pageList = @[@"关注",@"热门",@"最新"];
         self.pageView.labelTag = @{@"关注":[NSValue valueWithCGRect:CGRectMake(32, 15, 8, 8)]};
