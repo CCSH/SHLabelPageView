@@ -34,6 +34,8 @@
         //最好不要加动画
         [self.bigScroll setContentOffset:CGPointMake(pageView.index *self.view.frame.size.width, 0) animated:NO];
     };
+    self.pageView.currentLine.y = 40;
+    self.pageView.line.backgroundColor = [UIColor orangeColor];
     
     [self btnAction:nil];
     
@@ -61,7 +63,7 @@
         self.pageView.spaceW = 20;
         self.pageView.type = SHLabelPageType_more;
         self.pageView.pageList = @[@"头条",@"娱乐",@"热点",@"体育",@"泉州",@"网易号",@"财经",@"科技",@"汽车",@"时尚",@"图片",@"跟贴",@"房产",@"直播",@"轻松一刻",@"段子",@"军事",@"历史",@"家居",@"独家",@"游戏",@"健康",@"政务",@"哒哒趣闻",@"美女",@"NBA",@"社会",@"彩票",@"漫画",@"影视歌",@"中国足球",@"国际足球",@"CBA",@"跑步",@"手机",@"数码",@"移动互联",@"云课堂",@"态度公开课",@"旅游",@"读书",@"酒香",@"教育",@"亲子",@"暴雪游戏",@"情感",@"艺术",@"博客",@"论坛",@"型男",@"萌宠"];
-        self.pageView.index = 0;
+        self.pageView.index = 3;
     }else{
 
 //        self.pageView.startX = 0;
