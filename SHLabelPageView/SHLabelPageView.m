@@ -19,6 +19,7 @@
 
 //标签tag
 static NSInteger labTag = 10000000000;
+
 #pragma mark - 初始化
 - (instancetype)init
 {
@@ -199,7 +200,8 @@ static NSInteger labTag = 10000000000;
         
         [self.pageScroll addSubview:btn];
 
-        CGRect frame = [self.labelTag[obj] CGRectValue];
+        NSString *key = [NSString stringWithFormat:@"%lu",(unsigned long)idx];
+        CGRect frame = [self.labelTag[key] CGRectValue];
         //是否存在标记
         if (frame.size.height) {
             
