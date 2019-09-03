@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_SHLabelPageViewExample_SHLabelPageViewExampleUITests : NSObject
+@end
+@implementation PodsDummy_Pods_SHLabelPageViewExample_SHLabelPageViewExampleUITests
+@end
