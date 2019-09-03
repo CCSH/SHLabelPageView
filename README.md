@@ -5,7 +5,7 @@
 
 # 使用 pod 导入
 ```
-pod 'SHLabelPageView'
+pod 'SHLabelPageView' [![Pod Version](http://img.shields.io/cocoapods/v/SHLabelPageView.svg?style=flat)](http://cocoadocs.org/docsets/SHLabelPageView/)
 ```
 [![Pod Version](http://img.shields.io/cocoapods/v/SHLabelPageView.svg?style=flat)](http://cocoadocs.org/docsets/SHLabelPageView/)
 
