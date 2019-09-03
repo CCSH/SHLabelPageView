@@ -9,5 +9,5 @@ Pod::Spec.new do |s|
     s.homepage     = "https://github.com/CCSH/SHLabelPageView"
     s.source       = { :git => "https://github.com/CCSH/SHLabelPageView.git", :tag => s.version }
     s.source_files = "SHLabelPageView/*.{h,m}"
-    s.dependency     "SHExtension/UIView"
+    s.dependency    "SHExtension/UIView"
 end

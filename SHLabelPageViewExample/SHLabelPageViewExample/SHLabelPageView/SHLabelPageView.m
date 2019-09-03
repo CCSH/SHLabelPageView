@@ -20,7 +20,7 @@
 @implementation SHLabelPageView
 
 //标签tag
-static NSInteger labTag = 10000000000;
+static NSInteger labTag = 1000000;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
