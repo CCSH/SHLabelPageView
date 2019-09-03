@@ -16,9 +16,7 @@
 		5C020D8521241A7900F8AFBB /* SHLabelPageViewExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C020D8421241A7900F8AFBB /* SHLabelPageViewExampleTests.m */; };
 		5C020D9021241A7900F8AFBB /* SHLabelPageViewExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C020D8F21241A7900F8AFBB /* SHLabelPageViewExampleUITests.m */; };
 		5C020DA021241AE800F8AFBB /* SHLabelPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C020D9F21241AE800F8AFBB /* SHLabelPageView.m */; };
-		A47405518861F40B4FFB2E46 /* Pods_SHLabelPageViewExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B980DCC4C035A3261A10D4 /* Pods_SHLabelPageViewExample.framework */; };
-		A9DC901C5518FA3FBB79F5D9 /* Pods_SHLabelPageViewExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4D6BD888F11A229A122067 /* Pods_SHLabelPageViewExampleTests.framework */; };
-		E42F70A14958235049A8D0F9 /* Pods_SHLabelPageViewExample_SHLabelPageViewExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86323F0C38D3155ECE8A4EB /* Pods_SHLabelPageViewExample_SHLabelPageViewExampleUITests.framework */; };
+		80B2BFA5231DF34C0096C45A /* UIView+SHExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B2BFA4231DF34C0096C45A /* UIView+SHExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +37,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		399B9570C0A52CF107754010 /* Pods-SHLabelPageViewExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SHLabelPageViewExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-SHLabelPageViewExampleTests/Pods-SHLabelPageViewExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		55B980DCC4C035A3261A10D4 /* Pods_SHLabelPageViewExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SHLabelPageViewExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C020D6821241A7800F8AFBB /* SHLabelPageViewExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SHLabelPageViewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C020D6B21241A7800F8AFBB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5C020D6C21241A7800F8AFBB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -59,13 +55,8 @@
 		5C020D9121241A7900F8AFBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C020D9E21241AE800F8AFBB /* SHLabelPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHLabelPageView.h; sourceTree = "<group>"; };
 		5C020D9F21241AE800F8AFBB /* SHLabelPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHLabelPageView.m; sourceTree = "<group>"; };
-		6BF0DEB2BA450DF8494B2AA0 /* Pods-SHLabelPageViewExample-SHLabelPageViewExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SHLabelPageViewExample-SHLabelPageViewExampleUITests.release.xcconfig"; path = "Target Support Files/Pods-SHLabelPageViewExample-SHLabelPageViewExampleUITests/Pods-SHLabelPageViewExample-SHLabelPageViewExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
-		7DDEC2E0C566F508C8543BA7 /* Pods-SHLabelPageViewExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SHLabelPageViewExampleTests.release.xcconfig"; path = "Target Support Files/Pods-SHLabelPageViewExampleTests/Pods-SHLabelPageViewExampleTests.release.xcconfig"; sourceTree = "<group>"; };
-		89B81D0CA08101BDFAC56CFA /* Pods-SHLabelPageViewExample-SHLabelPageViewExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SHLabelPageViewExample-SHLabelPageViewExampleUITests.debug.xcconfig"; path = "Target Support Files/Pods-SHLabelPageViewExample-SHLabelPageViewExampleUITests/Pods-SHLabelPageViewExample-SHLabelPageViewExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		8B1A6C14DCFD1F1B753A9642 /* Pods-SHLabelPageViewExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SHLabelPageViewExample.debug.xcconfig"; path = "Target Support Files/Pods-SHLabelPageViewExample/Pods-SHLabelPageViewExample.debug.xcconfig"; sourceTree = "<group>"; };
-		AA4D6BD888F11A229A122067 /* Pods_SHLabelPageViewExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SHLabelPageViewExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B86323F0C38D3155ECE8A4EB /* Pods_SHLabelPageViewExample_SHLabelPageViewExampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SHLabelPageViewExample_SHLabelPageViewExampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D150FAB567EECBDF31FB8ECF /* Pods-SHLabelPageViewExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SHLabelPageViewExample.release.xcconfig"; path = "Target Support Files/Pods-SHLabelPageViewExample/Pods-SHLabelPageViewExample.release.xcconfig"; sourceTree = "<group>"; };
+		80B2BFA3231DF34C0096C45A /* UIView+SHExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SHExtension.h"; sourceTree = "<group>"; };
+		80B2BFA4231DF34C0096C45A /* UIView+SHExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SHExtension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +64,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A47405518861F40B4FFB2E46 /* Pods_SHLabelPageViewExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,7 +71,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9DC901C5518FA3FBB79F5D9 /* Pods_SHLabelPageViewExampleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,23 +78,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E42F70A14958235049A8D0F9 /* Pods_SHLabelPageViewExample_SHLabelPageViewExampleUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		18F7CB9CC2F12E4CB7A2123C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				55B980DCC4C035A3261A10D4 /* Pods_SHLabelPageViewExample.framework */,
-				B86323F0C38D3155ECE8A4EB /* Pods_SHLabelPageViewExample_SHLabelPageViewExampleUITests.framework */,
-				AA4D6BD888F11A229A122067 /* Pods_SHLabelPageViewExampleTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		5C020D5F21241A7800F8AFBB = {
 			isa = PBXGroup;
 			children = (
@@ -113,8 +91,6 @@
 				5C020D8321241A7900F8AFBB /* SHLabelPageViewExampleTests */,
 				5C020D8E21241A7900F8AFBB /* SHLabelPageViewExampleUITests */,
 				5C020D6921241A7800F8AFBB /* Products */,
-				F278AE82CBF317BCDA1BB277 /* Pods */,
-				18F7CB9CC2F12E4CB7A2123C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,6 +107,7 @@
 		5C020D6A21241A7800F8AFBB /* SHLabelPageViewExample */ = {
 			isa = PBXGroup;
 			children = (
+				80B2BF9F231DF2570096C45A /* UIView */,
 				5C020D9D21241AE800F8AFBB /* SHLabelPageView */,
 				5C020D6B21241A7800F8AFBB /* AppDelegate.h */,
 				5C020D6C21241A7800F8AFBB /* AppDelegate.m */,
@@ -172,17 +149,14 @@
 			path = SHLabelPageView;
 			sourceTree = "<group>";
 		};
-		F278AE82CBF317BCDA1BB277 /* Pods */ = {
+		80B2BF9F231DF2570096C45A /* UIView */ = {
 			isa = PBXGroup;
 			children = (
-				8B1A6C14DCFD1F1B753A9642 /* Pods-SHLabelPageViewExample.debug.xcconfig */,
-				D150FAB567EECBDF31FB8ECF /* Pods-SHLabelPageViewExample.release.xcconfig */,
-				89B81D0CA08101BDFAC56CFA /* Pods-SHLabelPageViewExample-SHLabelPageViewExampleUITests.debug.xcconfig */,
-				6BF0DEB2BA450DF8494B2AA0 /* Pods-SHLabelPageViewExample-SHLabelPageViewExampleUITests.release.xcconfig */,
-				399B9570C0A52CF107754010 /* Pods-SHLabelPageViewExampleTests.debug.xcconfig */,
-				7DDEC2E0C566F508C8543BA7 /* Pods-SHLabelPageViewExampleTests.release.xcconfig */,
+				80B2BFA3231DF34C0096C45A /* UIView+SHExtension.h */,
+				80B2BFA4231DF34C0096C45A /* UIView+SHExtension.m */,
 			);
-			path = Pods;
+			name = UIView;
+			path = ../Pods/SHExtension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,11 +166,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5C020D9421241A7900F8AFBB /* Build configuration list for PBXNativeTarget "SHLabelPageViewExample" */;
 			buildPhases = (
-				2F893C64A80FFEB51E3236F8 /* [CP] Check Pods Manifest.lock */,
 				5C020D6421241A7800F8AFBB /* Sources */,
 				5C020D6521241A7800F8AFBB /* Frameworks */,
 				5C020D6621241A7800F8AFBB /* Resources */,
-				FE6051EB4D53BBA3FB19FA84 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -333,28 +305,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SHLabelPageViewExample-SHLabelPageViewExampleUITests/Pods-SHLabelPageViewExample-SHLabelPageViewExampleUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2F893C64A80FFEB51E3236F8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SHLabelPageViewExample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		392AF701329A03058BCA6AB7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -399,23 +349,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FE6051EB4D53BBA3FB19FA84 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SHLabelPageViewExample/Pods-SHLabelPageViewExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SHLabelPageViewExample/Pods-SHLabelPageViewExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SHLabelPageViewExample/Pods-SHLabelPageViewExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -424,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C020D7021241A7800F8AFBB /* ViewController.m in Sources */,
+				80B2BFA5231DF34C0096C45A /* UIView+SHExtension.m in Sources */,
 				5C020D7B21241A7900F8AFBB /* main.m in Sources */,
 				5C020D6D21241A7800F8AFBB /* AppDelegate.m in Sources */,
 				5C020DA021241AE800F8AFBB /* SHLabelPageView.m in Sources */,
@@ -593,7 +527,6 @@
 		};
 		5C020D9521241A7900F8AFBB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B1A6C14DCFD1F1B753A9642 /* Pods-SHLabelPageViewExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -612,7 +545,6 @@
 		};
 		5C020D9621241A7900F8AFBB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D150FAB567EECBDF31FB8ECF /* Pods-SHLabelPageViewExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -631,7 +563,6 @@
 		};
 		5C020D9821241A7900F8AFBB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 399B9570C0A52CF107754010 /* Pods-SHLabelPageViewExampleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -650,7 +581,6 @@
 		};
 		5C020D9921241A7900F8AFBB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7DDEC2E0C566F508C8543BA7 /* Pods-SHLabelPageViewExampleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -669,7 +599,6 @@
 		};
 		5C020D9B21241A7900F8AFBB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89B81D0CA08101BDFAC56CFA /* Pods-SHLabelPageViewExample-SHLabelPageViewExampleUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SHLabelPageViewExampleUITests/Info.plist;
@@ -687,7 +616,6 @@
 		};
 		5C020D9C21241A7900F8AFBB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BF0DEB2BA450DF8494B2AA0 /* Pods-SHLabelPageViewExample-SHLabelPageViewExampleUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SHLabelPageViewExampleUITests/Info.plist;
