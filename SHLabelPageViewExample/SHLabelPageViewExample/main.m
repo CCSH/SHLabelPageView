@@ -2,8 +2,8 @@
 //  main.m
 //  SHLabelPageViewExample
 //
-//  Created by CSH on 2018/8/15.
-//  Copyright © 2018年 CSH. All rights reserved.
+//  Created by 陈胜辉 on 2019/9/3.
+//  Copyright © 2019 陈胜辉. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
