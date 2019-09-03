@@ -37,7 +37,7 @@ typedef enum : NSUInteger {
 //偏移量(设置滑动中的效果)
 @property (nonatomic, assign) CGFloat contentOffsetX;
 
-#pragma mark 标签设置(更改设置需要调用 reloadView)
+#pragma mark 标签布局设置(更改设置需要调用 reloadView)
 
 //标签开始的X(如果是 一页的话就是居中)
 @property (nonatomic, assign) CGFloat startX;
@@ -71,7 +71,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) CGFloat currentLineY;
 //选中线 size(默认 文字宽度, 4)
 @property (nonatomic, assign) CGSize currentLineSize;
-//未设置宽度 currentLineSize.width 时需要多余的间隙 如果设置了宽度则 此属性失效
+//选中线 多出间隙(未设置宽度 currentLineSize.width 时需要多余的间隙 如果设置了宽度则 此属性失效)
 @property (nonatomic, assign) CGFloat currentLineMargin;
 
 //选中线 弧度(默认 2)

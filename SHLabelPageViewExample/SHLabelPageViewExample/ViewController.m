@@ -61,19 +61,19 @@
         self.pageView.index = 0;
 
         //选中线
-//        self.pageView.currentLineY = 10;
-//        self.pageView.currentLineSize = CGSizeMake(0, 30);
-//        self.pageView.currentLineMargin = 20;
-//        self.pageView.currentLineColor = [UIColor orangeColor];
-//        self.pageView.currentLineRadius = 15;
-//        self.pageView.checkColor = [UIColor whiteColor];
-        
-        self.pageView.currentLineY = 40;
-        self.pageView.currentLineSize = CGSizeMake(0, 4);
-        self.pageView.currentLineMargin = 0;
+        self.pageView.currentLineY = 10;
+        self.pageView.currentLineSize = CGSizeMake(0, 30);
+        self.pageView.currentLineMargin = 20;
         self.pageView.currentLineColor = [UIColor orangeColor];
-        self.pageView.currentLineRadius = 2;
-        self.pageView.checkColor = [UIColor blackColor];
+        self.pageView.currentLineRadius = 15;
+        self.pageView.checkColor = [UIColor whiteColor];
+        
+//        self.pageView.currentLineY = 40;
+//        self.pageView.currentLineSize = CGSizeMake(0, 4);
+//        self.pageView.currentLineMargin = 0;
+//        self.pageView.currentLineColor = [UIColor orangeColor];
+//        self.pageView.currentLineRadius = 2;
+//        self.pageView.checkColor = [UIColor blackColor];
 
     } else {
         self.pageView.spaceW = 30;
@@ -87,7 +87,6 @@
         self.pageView.currentLineSize = CGSizeMake(20, 4);
         self.pageView.currentLineColor = [UIColor redColor];
         self.pageView.currentLineRadius = 2;
-
         self.pageView.checkColor = [UIColor blackColor];
     }
 
