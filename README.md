@@ -7,5 +7,6 @@
 ```
 pod 'SHLabelPageView'
 ```
+[![Pod Version](http://img.shields.io/cocoapods/v/SHLabelPageView.svg?style=flat)](http://cocoadocs.org/docsets/SHLabelPageView/)
 
 ![image](https://github.com/CCSH/SHLabelPageView/blob/master/QQ20180711-154752-HD.gif)
