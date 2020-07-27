@@ -78,6 +78,7 @@
     self.pageView.size = CGSizeMake(self.view.width, 50);
     self.pageView.directione = SHLabelPageDirectione_ver;
     self.pageView.backgroundColor = [UIColor clearColor];
+    self.pageView.y = 64;
 
     if (self.pageView.type == SHLabelPageType_one)
     {
@@ -88,14 +89,14 @@
         self.pageView.labelTag = nil;
         self.pageView.index = 0;
 
-        //选中线
+        //选中线(样式一)
         self.pageView.currentLineY = 10;
         self.pageView.currentLineSize = CGSizeMake(0, 30);
         self.pageView.currentLineMargin = 20;
         self.pageView.currentLineColor = [UIColor orangeColor];
         self.pageView.currentLineRadius = 15;
         self.pageView.checkColor = [UIColor whiteColor];
-
+        //选中线(样式二)
         //        self.pageView.currentLineY = 40;
         //        self.pageView.currentLineSize = CGSizeMake(0, 4);
         //        self.pageView.currentLineMargin = 0;
@@ -133,6 +134,8 @@
     self.pageView.backgroundColor = [UIColor orangeColor];
     self.pageView.directione = SHLabelPageDirectione_hor;
     [self.pageView reloadView];
+
+    self.pageView.centerY = self.view.centerY;
 }
 
 - (void)addScrollPage

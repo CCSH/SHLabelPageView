@@ -91,8 +91,8 @@
 		80B2BFD2231DF9BE0096C45A /* SHExtension */ = {
 			isa = PBXGroup;
 			children = (
-				80B2BFD3231DF9BE0096C45A /* UIView+SHExtension.m */,
 				80B2BFD4231DF9BE0096C45A /* UIView+SHExtension.h */,
+				80B2BFD3231DF9BE0096C45A /* UIView+SHExtension.m */,
 			);
 			path = SHExtension;
 			sourceTree = "<group>";
