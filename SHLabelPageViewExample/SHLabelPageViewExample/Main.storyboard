@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3nG-Tz-g9a">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3nG-Tz-g9a">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -39,11 +37,20 @@
                                     <action selector="btnAction:" destination="3nG-Tz-g9a" eventType="touchUpInside" id="tKB-HV-o0h"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6g-1f-jbh">
+                                <rect key="frame" x="172" y="500" width="31" height="30"/>
+                                <state key="normal" title="方向"/>
+                                <connections>
+                                    <action selector="directionAction:" destination="3nG-Tz-g9a" eventType="touchUpInside" id="tMg-ZH-RcU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Las-au-hhd" firstAttribute="leading" secondItem="OP5-GZ-VTN" secondAttribute="leading" id="1QM-WT-dvu"/>
+                            <constraint firstItem="U6g-1f-jbh" firstAttribute="top" secondItem="QIe-7u-uDD" secondAttribute="bottom" constant="20" id="FuT-5G-Fba"/>
                             <constraint firstItem="QIe-7u-uDD" firstAttribute="top" secondItem="Las-au-hhd" secondAttribute="bottom" constant="50" id="GdP-4R-XzD"/>
+                            <constraint firstItem="U6g-1f-jbh" firstAttribute="centerX" secondItem="OP5-GZ-VTN" secondAttribute="centerX" id="Ijf-pD-gtk"/>
                             <constraint firstItem="Las-au-hhd" firstAttribute="top" secondItem="OP5-GZ-VTN" secondAttribute="top" constant="200" id="cOj-F6-o8b"/>
                             <constraint firstAttribute="trailing" secondItem="Las-au-hhd" secondAttribute="trailing" id="nUe-tX-mek"/>
                             <constraint firstItem="QIe-7u-uDD" firstAttribute="centerX" secondItem="OP5-GZ-VTN" secondAttribute="centerX" id="yVL-U2-9XH"/>

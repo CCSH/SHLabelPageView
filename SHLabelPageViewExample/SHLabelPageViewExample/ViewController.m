@@ -1,3 +1,5 @@
+
+
 //
 //  ViewController.m
 //  SHLabelPageView
@@ -9,7 +11,7 @@
 #import "ViewController.h"
 #import "SHLabelPageView.h"
 
-@interface ViewController () <UIScrollViewDelegate>
+@interface ViewController () < UIScrollViewDelegate >
 
 @property (weak, nonatomic) IBOutlet UIScrollView *bigScroll;
 
@@ -19,47 +21,73 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
+
     self.bigScroll.delegate = self;
-    
+
     //初始化
     self.pageView = [[SHLabelPageView alloc] init];
-    self.pageView.frame = CGRectMake(0, 64, self.view.frame.size.width, 50);
+    self.pageView.origin = CGPointMake(0, 64);
+
+    __weak typeof(self) weakSelf = self;
     //回调
     self.pageView.pageViewBlock = ^(SHLabelPageView *pageView) {
-        
-        //最好不要加动画
-        [self.bigScroll setContentOffset:CGPointMake(pageView.index * self.view.frame.size.width, 0) animated:NO];
+      //最好不要加动画
+      [weakSelf.bigScroll setContentOffset:CGPointMake(pageView.index * self.view.frame.size.width, 0) animated:NO];
     };
-    
+
     [self btnAction:nil];
-    
+
     [self.view addSubview:self.pageView];
-    
+
     [self addScrollPage];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if ([scrollView isEqual:self.bigScroll]) {
+- (void)touchesBegan:(NSSet< UITouch * > *)touches withEvent:(UIEvent *)event
+{
+    self.pageView.index = 0;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if ([scrollView isEqual:self.bigScroll])
+    {
         CGFloat value = scrollView.contentOffset.x / scrollView.frame.size.width;
-        
+
         //设置偏移
         self.pageView.contentOffsetX = value;
     }
 }
 
-- (IBAction)btnAction:(id)sender {
-    if (self.pageView.type == SHLabelPageType_one) {
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if ([scrollView isEqual:self.bigScroll])
+    {
+        if (self.pageView.directione == SHLabelPageDirectione_hor)
+        {
+            self.pageView.index = (int)(scrollView.contentOffset.x / scrollView.frame.size.width);
+        }
+    }
+}
+
+- (IBAction)btnAction:(id)sender
+{
+    self.pageView.size = CGSizeMake(self.view.width, 50);
+    self.pageView.directione = SHLabelPageDirectione_ver;
+    self.pageView.backgroundColor = [UIColor clearColor];
+
+    if (self.pageView.type == SHLabelPageType_one)
+    {
         self.pageView.startX = 20;
         self.pageView.spaceW = 20;
         self.pageView.type = SHLabelPageType_more;
         self.pageView.pageList = @[ @"头条", @"娱乐", @"热点", @"体育", @"泉州", @"网易号", @"财经", @"科技", @"汽车", @"时尚", @"图片", @"跟贴", @"房产", @"直播", @"轻松一刻", @"段子", @"军事", @"历史", @"家居", @"独家", @"游戏", @"健康", @"政务", @"哒哒趣闻", @"美女", @"NBA", @"社会", @"彩票", @"漫画", @"影视歌", @"中国足球", @"国际足球", @"CBA", @"跑步", @"手机", @"数码", @"移动互联", @"云课堂", @"态度公开课", @"旅游", @"读书", @"酒香", @"教育", @"亲子", @"暴雪游戏", @"情感", @"艺术", @"博客", @"论坛", @"型男", @"萌宠" ];
         self.pageView.labelTag = nil;
         self.pageView.index = 0;
-        
+
         //选中线
         self.pageView.currentLineY = 10;
         self.pageView.currentLineSize = CGSizeMake(0, 30);
@@ -67,21 +95,22 @@
         self.pageView.currentLineColor = [UIColor orangeColor];
         self.pageView.currentLineRadius = 15;
         self.pageView.checkColor = [UIColor whiteColor];
-        
+
         //        self.pageView.currentLineY = 40;
         //        self.pageView.currentLineSize = CGSizeMake(0, 4);
         //        self.pageView.currentLineMargin = 0;
         //        self.pageView.currentLineColor = [UIColor orangeColor];
         //        self.pageView.currentLineRadius = 2;
         //        self.pageView.checkColor = [UIColor blackColor];
-        
-    } else {
+    }
+    else
+    {
         self.pageView.spaceW = 30;
         self.pageView.type = SHLabelPageType_one;
         self.pageView.pageList = @[ @"关注", @"热门", @"最新" ];
-        self.pageView.labelTag = @{ @"2" : [NSValue valueWithCGRect:CGRectMake(32, 15, 8, 8)] };
+        self.pageView.labelTag = @{@"2" : [NSValue valueWithCGRect:CGRectMake(32, 15, 8, 8)]};
         self.pageView.index = 1;
-        
+
         //选中线
         self.pageView.currentLineY = 40;
         self.pageView.currentLineSize = CGSizeMake(20, 4);
@@ -89,18 +118,32 @@
         self.pageView.currentLineRadius = 2;
         self.pageView.checkColor = [UIColor blackColor];
     }
-    
+
     [self.pageView reloadView];
-    
+
     [self addScrollPage];
 }
 
-- (void)addScrollPage {
-    for (UIView *view in self.bigScroll.subviews) {
+- (IBAction)directionAction:(id)sender
+{
+    self.pageView.currentLineSize = CGSizeMake(5, 20);
+    self.pageView.currentLineColor = [UIColor redColor];
+    self.pageView.currentLineRadius = 0;
+    self.pageView.size = CGSizeMake(100, 600);
+    self.pageView.backgroundColor = [UIColor orangeColor];
+    self.pageView.directione = SHLabelPageDirectione_hor;
+    [self.pageView reloadView];
+}
+
+- (void)addScrollPage
+{
+    for (UIView *view in self.bigScroll.subviews)
+    {
         [view removeFromSuperview];
     }
-    
-    for (int i = 0; i < self.pageView.pageList.count; i++) {
+
+    for (int i = 0; i < self.pageView.pageList.count; i++)
+    {
         UILabel *lab = [[UILabel alloc] init];
         lab.frame = CGRectMake(i * self.view.frame.size.width, 30, self.view.frame.size.width, 30);
         lab.backgroundColor = [UIColor redColor];
@@ -111,10 +154,10 @@
     self.bigScroll.contentSize = CGSizeMake(self.pageView.pageList.count * self.view.frame.size.width, self.bigScroll.frame.size.height);
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

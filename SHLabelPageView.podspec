@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     s.name         = "SHLabelPageView"
-    s.version      = "2.2.0"
-    s.summary      = "各种标签页，新闻标签页"
+    s.version      = "2.3.0"
+    s.summary      = "各种标签页，新闻标签页，商城分类页等"
     s.license      = "MIT"
     s.authors      = { "CSH" => "624089195@qq.com" }
     s.platform     = :ios, "8.0"
