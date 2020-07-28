@@ -10,6 +10,7 @@
 
 #import "ViewController.h"
 #import "SHLabelPageView.h"
+#import <UIView+SHExtension.h>
 
 @interface ViewController () < UIScrollViewDelegate >
 
