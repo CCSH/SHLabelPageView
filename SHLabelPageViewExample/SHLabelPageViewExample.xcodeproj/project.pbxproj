@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		153074E71CAEF2F9A6A6B4E9 /* Pods_SHLabelPageViewExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C102050E1302C8750180AE5 /* Pods_SHLabelPageViewExample.framework */; };
 		80B2BFB4231DF6B10096C45A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B2BFB3231DF6B10096C45A /* AppDelegate.m */; };
 		80B2BFB7231DF6B10096C45A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B2BFB6231DF6B10096C45A /* ViewController.m */; };
 		80B2BFBC231DF6B20096C45A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80B2BFBB231DF6B20096C45A /* Assets.xcassets */; };
@@ -14,10 +15,11 @@
 		80B2BFC2231DF6B20096C45A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B2BFC1231DF6B20096C45A /* main.m */; };
 		80B2BFCB231DF6D00096C45A /* SHLabelPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B2BFCA231DF6D00096C45A /* SHLabelPageView.m */; };
 		80B2BFD1231DF70F0096C45A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80B2BFD0231DF70F0096C45A /* Main.storyboard */; };
-		83BA8EB924CED648000A17FA /* UIView+SHExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BA8EB724CED648000A17FA /* UIView+SHExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C102050E1302C8750180AE5 /* Pods_SHLabelPageViewExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SHLabelPageViewExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F340195C6D6799B9DE542C3 /* Pods-SHLabelPageViewExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SHLabelPageViewExample.debug.xcconfig"; path = "Target Support Files/Pods-SHLabelPageViewExample/Pods-SHLabelPageViewExample.debug.xcconfig"; sourceTree = "<group>"; };
 		80B2BFAF231DF6B10096C45A /* SHLabelPageViewExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SHLabelPageViewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80B2BFB2231DF6B10096C45A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		80B2BFB3231DF6B10096C45A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -30,8 +32,7 @@
 		80B2BFC9231DF6D00096C45A /* SHLabelPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHLabelPageView.h; sourceTree = "<group>"; };
 		80B2BFCA231DF6D00096C45A /* SHLabelPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHLabelPageView.m; sourceTree = "<group>"; };
 		80B2BFD0231DF70F0096C45A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		83BA8EB724CED648000A17FA /* UIView+SHExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SHExtension.m"; sourceTree = "<group>"; };
-		83BA8EB824CED648000A17FA /* UIView+SHExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SHExtension.h"; sourceTree = "<group>"; };
+		C25E359382C0ABC659CB6CE4 /* Pods-SHLabelPageViewExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SHLabelPageViewExample.release.xcconfig"; path = "Target Support Files/Pods-SHLabelPageViewExample/Pods-SHLabelPageViewExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +40,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				153074E71CAEF2F9A6A6B4E9 /* Pods_SHLabelPageViewExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B9C68FD100F80BEE20AD540 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0C102050E1302C8750180AE5 /* Pods_SHLabelPageViewExample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		80B2BFA6231DF6B10096C45A = {
 			isa = PBXGroup;
 			children = (
 				80B2BFB1231DF6B10096C45A /* SHLabelPageViewExample */,
 				80B2BFB0231DF6B10096C45A /* Products */,
+				8FEB330C3C96E5C103865F45 /* Pods */,
+				7B9C68FD100F80BEE20AD540 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,7 +76,6 @@
 		80B2BFB1231DF6B10096C45A /* SHLabelPageViewExample */ = {
 			isa = PBXGroup;
 			children = (
-				83BA8EB624CED648000A17FA /* SHExtension */,
 				80B2BFC8231DF6D00096C45A /* SHLabelPageView */,
 				80B2BFB2231DF6B10096C45A /* AppDelegate.h */,
 				80B2BFB3231DF6B10096C45A /* AppDelegate.m */,
@@ -88,13 +99,14 @@
 			path = SHLabelPageView;
 			sourceTree = "<group>";
 		};
-		83BA8EB624CED648000A17FA /* SHExtension */ = {
+		8FEB330C3C96E5C103865F45 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				83BA8EB724CED648000A17FA /* UIView+SHExtension.m */,
-				83BA8EB824CED648000A17FA /* UIView+SHExtension.h */,
+				0F340195C6D6799B9DE542C3 /* Pods-SHLabelPageViewExample.debug.xcconfig */,
+				C25E359382C0ABC659CB6CE4 /* Pods-SHLabelPageViewExample.release.xcconfig */,
 			);
-			path = SHExtension;
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,9 +116,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80B2BFC5231DF6B20096C45A /* Build configuration list for PBXNativeTarget "SHLabelPageViewExample" */;
 			buildPhases = (
+				87F55E530E677025407B0B0C /* [CP] Check Pods Manifest.lock */,
 				80B2BFAB231DF6B10096C45A /* Sources */,
 				80B2BFAC231DF6B10096C45A /* Frameworks */,
 				80B2BFAD231DF6B10096C45A /* Resources */,
+				333CFCE7A1071B0540F93CF5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -162,13 +176,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		333CFCE7A1071B0540F93CF5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SHLabelPageViewExample/Pods-SHLabelPageViewExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SHLabelPageViewExample/Pods-SHLabelPageViewExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SHLabelPageViewExample/Pods-SHLabelPageViewExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		87F55E530E677025407B0B0C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SHLabelPageViewExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		80B2BFAB231DF6B10096C45A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				80B2BFB7231DF6B10096C45A /* ViewController.m in Sources */,
-				83BA8EB924CED648000A17FA /* UIView+SHExtension.m in Sources */,
 				80B2BFC2231DF6B20096C45A /* main.m in Sources */,
 				80B2BFB4231DF6B10096C45A /* AppDelegate.m in Sources */,
 				80B2BFCB231DF6D00096C45A /* SHLabelPageView.m in Sources */,
@@ -303,6 +358,7 @@
 		};
 		80B2BFC6231DF6B20096C45A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F340195C6D6799B9DE542C3 /* Pods-SHLabelPageViewExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -319,6 +375,7 @@
 		};
 		80B2BFC7231DF6B20096C45A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C25E359382C0ABC659CB6CE4 /* Pods-SHLabelPageViewExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

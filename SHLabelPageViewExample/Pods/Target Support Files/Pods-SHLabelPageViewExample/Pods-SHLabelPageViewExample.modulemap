@@ -1,0 +1,6 @@
+framework module Pods_SHLabelPageViewExample {
+  umbrella header "Pods-SHLabelPageViewExample-umbrella.h"
+
+  export *
+  module * { export * }
+}
