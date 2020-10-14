@@ -447,8 +447,10 @@ static NSInteger labTag = 1000000;
         
         offsetX= MAX(0, MIN(offsetX, offsetMaxX));
 
-        //滚动
-        [self.pageScroll setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+        if (offsetMaxX >= 0) { //不足一屏幕则不进行处理
+            //滚动
+            [self.pageScroll setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+        }
     }
 
     //设置选中下划线

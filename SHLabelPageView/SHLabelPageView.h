@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "UIView+SHExtension.h"
 
 //标签页类型
 typedef enum : NSUInteger {
