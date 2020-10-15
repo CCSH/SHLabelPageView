@@ -67,7 +67,7 @@
 {
     if ([scrollView isEqual:self.bigScroll])
     {
-        if (self.pageView.directione == SHLabelPageDirectione_hor)
+        if (self.pageView.scrollDirection == UICollectionViewScrollDirectionVertical)
         {
             self.pageView.index = (int)(scrollView.contentOffset.x / scrollView.frame.size.width);
         }
@@ -77,15 +77,17 @@
 - (IBAction)btnAction:(id)sender
 {
     self.pageView.size = CGSizeMake(self.view.width, 50);
-    self.pageView.directione = SHLabelPageDirectione_ver;
+    self.pageView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     self.pageView.backgroundColor = [UIColor clearColor];
     self.pageView.y = 64;
 
     if (self.pageView.type == SHLabelPageType_one)
     {
+        self.pageView.type = SHLabelPageType_more;
+        
         self.pageView.startX = 20;
         self.pageView.spaceW = 20;
-        self.pageView.type = SHLabelPageType_more;
+        
         self.pageView.pageList = @[ @"头条", @"娱乐", @"热点", @"体育", @"泉州", @"网易号", @"财经", @"科技", @"汽车", @"时尚", @"图片", @"跟贴", @"房产", @"直播", @"轻松一刻", @"段子", @"军事", @"历史", @"家居", @"独家", @"游戏", @"健康", @"政务", @"哒哒趣闻", @"美女", @"NBA", @"社会", @"彩票", @"漫画", @"影视歌", @"中国足球", @"国际足球", @"CBA", @"跑步", @"手机", @"数码", @"移动互联", @"云课堂", @"态度公开课", @"旅游", @"读书", @"酒香", @"教育", @"亲子", @"暴雪游戏", @"情感", @"艺术", @"博客", @"论坛", @"型男", @"萌宠" ];
         self.pageView.labelTag = nil;
         self.pageView.index = 0;
@@ -107,9 +109,10 @@
     }
     else
     {
-        self.pageView.spaceW = 30;
         self.pageView.type = SHLabelPageType_one;
+        self.pageView.spaceW = 30;
         self.pageView.pageList = @[ @"关注", @"热门", @"最新" ];
+//        self.pageView.labelW = self.view.width/3;
         self.pageView.labelTag = @{@"2" : [NSValue valueWithCGRect:CGRectMake(32, 15, 8, 8)]};
         self.pageView.index = 1;
 
@@ -133,7 +136,7 @@
     self.pageView.currentLineRadius = 0;
     self.pageView.size = CGSizeMake(100, 600);
     self.pageView.backgroundColor = [UIColor orangeColor];
-    self.pageView.directione = SHLabelPageDirectione_hor;
+    self.pageView.scrollDirection = UICollectionViewScrollDirectionVertical;
     [self.pageView reloadView];
 
     self.pageView.centerY = self.view.centerY;

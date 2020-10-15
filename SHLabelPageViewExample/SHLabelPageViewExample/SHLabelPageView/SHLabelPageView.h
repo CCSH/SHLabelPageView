@@ -15,12 +15,6 @@ typedef enum : NSUInteger {
     SHLabelPageType_one,    //一页(标签居中)
 } SHLabelPageType;
 
-//滚动方向
-typedef enum : NSUInteger {
-    SHLabelPageDirectione_ver,   //水平滚动
-    SHLabelPageDirectione_hor,   //竖直滚动
-} SHLabelPageDirectione;
-
 /**
  标签页
  */
@@ -44,11 +38,9 @@ typedef enum : NSUInteger {
 
 #pragma mark 标签布局设置(更改设置需要调用 reloadView)
 
-//标签开始的X(如果是 一页的话就是居中)
+//标签开始的X(如果是 一页的话就是居中 此属性失效)
 @property (nonatomic, assign) CGFloat startX;
 //标签间间隔
-//如果一页设置了 spaceW 则 startX 失效
-//如果一页不设置 spaceW 则去除 2*startX 均分)
 @property (nonatomic, assign) CGFloat spaceW;
 
 //标签宽度(可以不设置自适应)
@@ -76,7 +68,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) CGFloat currentLineY;
 //选中线图片
 @property (nonatomic, strong) UIImage *currentImg;
-//选中线 size(默认 文字宽度, 4)
+//选中线 size(默认 height: 4, width: 自适应)
 @property (nonatomic, assign) CGSize currentLineSize;
 //选中线 多出间隙(未设置宽度 currentLineSize.width 时需要多余的间隙 如果设置了宽度则 此属性失效)
 @property (nonatomic, assign) CGFloat currentLineMargin;
@@ -86,9 +78,8 @@ typedef enum : NSUInteger {
 //选中线 color(默认 redColor)
 @property (nonatomic, strong) UIColor *currentLineColor;
 
-
-//方向
-@property (nonatomic, assign) SHLabelPageDirectione directione;
+//方向 (如果是 UICollectionViewScrollDirectionVertical 的 则 type 为 SHLabelPageType_more)
+@property (nonatomic, assign) UICollectionViewScrollDirection scrollDirection;
 
 #pragma mark 竖直配置(购物类APP分类形式)
 //标签高度(默认40)
