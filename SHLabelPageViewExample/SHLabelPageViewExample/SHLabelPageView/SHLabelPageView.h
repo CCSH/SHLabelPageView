@@ -36,6 +36,13 @@ typedef enum : NSUInteger {
 //偏移量(设置滑动中的效果)
 @property (nonatomic, assign) CGFloat contentOffsetX;
 
+//方向 (如果是 UICollectionViewScrollDirectionVertical 的 则 type 为 SHLabelPageType_more)
+@property (nonatomic, assign) UICollectionViewScrollDirection scrollDirection;
+
+#pragma mark 竖直配置(购物类APP分类形式)
+//标签高度(默认40)
+@property (nonatomic, assign) CGFloat labelH;
+
 #pragma mark 标签布局设置(更改设置需要调用 reloadView)
 
 //标签开始的X(如果是 一页的话就是居中 此属性失效)
@@ -77,14 +84,6 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) CGFloat currentLineRadius;
 //选中线 color(默认 redColor)
 @property (nonatomic, strong) UIColor *currentLineColor;
-
-//方向 (如果是 UICollectionViewScrollDirectionVertical 的 则 type 为 SHLabelPageType_more)
-@property (nonatomic, assign) UICollectionViewScrollDirection scrollDirection;
-
-#pragma mark 竖直配置(购物类APP分类形式)
-//标签高度(默认40)
-@property (nonatomic, assign) CGFloat labelH;
-
 
 #pragma mark 刷新
 - (void)reloadView;
