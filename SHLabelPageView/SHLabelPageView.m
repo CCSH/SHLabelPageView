@@ -33,6 +33,7 @@ static NSInteger labTag = 1000000;
         self.uncheckColor = nil;
         self.currentLineColor = nil;
         self.labelH = 40;
+        self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     }
     return self;
 }
@@ -57,7 +58,7 @@ static NSInteger labTag = 1000000;
     _contentOffsetX = contentOffsetX;
 
     //竖直布局不生效
-    if (self.directione == SHLabelPageDirectione_hor) {
+    if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
         return;
     }
     
@@ -182,7 +183,7 @@ static NSInteger labTag = 1000000;
 - (void)setCurrentLineY:(CGFloat)currentLineY {
     _currentLineY = currentLineY;
     //竖直布局不生效
-    if (self.directione == SHLabelPageDirectione_hor)
+    if (self.scrollDirection == UICollectionViewScrollDirectionVertical)
     {
         return;
     }
@@ -258,17 +259,17 @@ static NSInteger labTag = 1000000;
     [self.pageScroll addSubview:self.currentLine];
 
     //设置内容
-    switch (self.directione)
+    switch (self.scrollDirection)
     {
-        case SHLabelPageDirectione_hor: //竖直布局
+        case UICollectionViewScrollDirectionVertical: //竖直布局
         {
-            [self configUIhor];
+            [self configVertical];
         }
             break;
         default:
         {
             //默认水平布局
-            [self configUIver];
+            [self configHorizontal];
         }
             break;
     }
@@ -279,18 +280,18 @@ static NSInteger labTag = 1000000;
 }
 
 #pragma mark 水平布局
-- (void)configUIver{
+- (void)configHorizontal{
     //设置标签
        CGFloat view_h = self.pageScroll.height;
 
+        if (self.type == SHLabelPageType_one) {
+            //一页 居中没有startX
+            self.startX = 0;
+        }
+    
        //间隔
        __block CGFloat view_x = self.startX;
-       __block CGFloat view_start = 0;
        __block CGFloat contentSetX = 0;
-
-       if (self.type == SHLabelPageType_one) {
-           view_start = (self.width - 2 * self.startX) / (self.pageList.count + 1);
-       }
 
        //设置内容
        [self.pageList enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *_Nonnull stop) {
@@ -307,27 +308,14 @@ static NSInteger labTag = 1000000;
                btn.frame = CGRectMake(view_x, 0, [self getChannelWithText:obj], view_h);
            }
 
-           //设置frame
-           switch (self.type) {
-               case SHLabelPageType_one: //一页
-               {
-                   //设置了间距
-                   if (self.spaceW) {
-                       if (idx == 0) { //第一个
-                           btn.x = 0;
-                       }
-                       if (idx == self.pageList.count - 1) { //最后一个
-                           //计算位置
-                           contentSetX = (self.width - btn.maxX) / 2;
-                       }
-                   } else { //没有设置间距
-
-                       btn.centerX = self.startX + ((idx + 1) * view_start);
-                   }
-               } break;
-               default:
-                   break;
+           //一页的话就是整体居中
+           if (self.type == SHLabelPageType_one) {
+               if (idx == self.pageList.count - 1) { //最后一个
+                   //计算位置
+                   contentSetX = (self.width - btn.maxX) / 2;
+               }
            }
+
 
            view_x += btn.width + self.spaceW;
 
@@ -355,7 +343,7 @@ static NSInteger labTag = 1000000;
 }
 
 #pragma mark 竖直布局
-- (void)configUIhor{
+- (void)configVertical{
     
     self.currentLine.origin = CGPointZero;
     __block CGFloat view_y = 0;
@@ -375,7 +363,6 @@ static NSInteger labTag = 1000000;
     
     self.pageScroll.contentSize = CGSizeMake(0, view_y);
     self.pageScroll.clipsToBounds = YES;
-
 }
     
 
@@ -419,19 +406,19 @@ static NSInteger labTag = 1000000;
     }
     
     //处理布局
-    switch (self.directione) {
-        case SHLabelPageDirectione_hor://垂直
-            [self handlePagehor];
+    switch (self.scrollDirection) {
+        case UICollectionViewScrollDirectionVertical://垂直
+            [self handlePageVertical];
             break;
         default:
-            [self handlePagever];
+            [self handlePageHorizontal];
             break;
     }
     
 }
 
 #pragma mark 处理水平
-- (void)handlePagever{
+- (void)handlePageHorizontal{
     //取出当前的标签
     UIButton *currentBtn = [self.pageScroll viewWithTag:self.index + labTag];
     CGFloat lineW = self.currentLineSize.width ?: (currentBtn.width + self.currentLineMargin);
@@ -440,10 +427,6 @@ static NSInteger labTag = 1000000;
         //设置scroll居中
         CGFloat offsetX = currentBtn.centerX - self.pageScroll.width * 0.5;
         CGFloat offsetMaxX = self.pageScroll.contentSize.width - self.pageScroll.width;
-
-        if (offsetMaxX < 0) { //不足一屏幕则不进行处理
-            return;
-        }
         
         offsetX= MAX(0, MIN(offsetX, offsetMaxX));
 
@@ -469,7 +452,7 @@ static NSInteger labTag = 1000000;
 }
 
 #pragma mark 处理竖直
-- (void)handlePagehor{
+- (void)handlePageVertical{
     //取出当前的标签
     UIButton *currentBtn = [self.pageScroll viewWithTag:self.index + labTag];
     //选中颜色
@@ -483,15 +466,12 @@ static NSInteger labTag = 1000000;
     CGFloat offsetY = currentBtn.centerY - self.pageScroll.height * 0.5;
     CGFloat offsetMaxY = self.pageScroll.contentSize.height - self.pageScroll.height;
     
-    if (offsetMaxY < 0)
-    {
-        return;
-    }
-    
     offsetY = MAX(0, MIN(offsetY, offsetMaxY));
 
-    //滚动
-    [self.pageScroll setContentOffset:CGPointMake(0, offsetY) animated:YES];
+    if (offsetMaxY >= 0) { //不足一屏幕则不进行处理
+        //滚动
+        [self.pageScroll setContentOffset:CGPointMake(offsetMaxY, 0) animated:YES];
+    }
 }
 
 #pragma mark 获取颜色RGB
@@ -577,6 +557,11 @@ static NSInteger labTag = 1000000;
     
     if (!self.pageList.count) {
         return;
+    }
+    
+    //如果是垂直的则 为多页效果
+    if (self.scrollDirection == UICollectionViewScrollDirectionVertical ) {
+        self.type = SHLabelPageType_more;
     }
     
     //配置UI
