@@ -25,7 +25,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSArray <NSString *>*pageList;
 
 //回调(标签点击回调)
-@property (nonatomic, copy) void(^pageViewBlock)(SHLabelPageView *pageView);
+@property (nonatomic, copy) void(^pageViewBlock)(NSInteger index);
 
 #pragma mark - 选择设置
 //类型
@@ -45,10 +45,10 @@ typedef enum : NSUInteger {
 
 #pragma mark 标签布局设置(更改设置需要调用 reloadView)
 
-//标签开始的X(如果是 一页的话就是居中 此属性失效)
-@property (nonatomic, assign) CGFloat startX;
+//标签开始的距离(如果是 SHLabelPageType_one 的话就是居中 此属性失效)
+@property (nonatomic, assign) CGFloat start;
 //标签间间隔
-@property (nonatomic, assign) CGFloat spaceW;
+@property (nonatomic, assign) CGFloat space;
 
 //标签宽度(可以不设置自适应)
 @property (nonatomic, assign) CGFloat labelW;
