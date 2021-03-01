@@ -23,17 +23,16 @@
 //标签tag
 static NSInteger labTag = 1000000;
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self)
-    {
-        self.tagColor = nil;
-        self.fontSize = nil;
-        self.unFontSize = nil;
-        self.checkColor = nil;
-        self.uncheckColor = nil;
-        self.currentLineColor = nil;
+    if (self) {
+        self.tagColor = [UIColor redColor];
+        self.fontSize = [UIFont boldSystemFontOfSize:16];
+        self.unFontSize = [UIFont systemFontOfSize:16];
+        self.checkColor = [UIColor blackColor];
+        self.uncheckColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+        self.currentLineColor = [UIColor redColor];
+        ;
         self.labelH = 40;
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     }
@@ -42,10 +41,8 @@ static NSInteger labTag = 1000000;
 
 #pragma mark - 私有方法
 #pragma mark SET
-- (void)setIndex:(NSInteger)index
-{
-    if (_index == index)
-    {
+- (void)setIndex:(NSInteger)index {
+    if (_index == index) {
         return;
     }
     
@@ -53,34 +50,28 @@ static NSInteger labTag = 1000000;
     //刷新界面
     [self reloadPage];
     //回调
-    if (self.pageViewBlock)
-    {
+    if (self.pageViewBlock) {
         self.pageViewBlock(self.index);
     }
 }
 
-- (void)setContentOffsetX:(CGFloat)contentOffsetX
-{
+- (void)setContentOffsetX:(CGFloat)contentOffsetX {
     _contentOffsetX = contentOffsetX;
     
     //竖直布局不生效
-    if (self.scrollDirection == UICollectionViewScrollDirectionVertical)
-    {
+    if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
         return;
     }
     
-    if (contentOffsetX == self.index)
-    { //已经设置完毕 -> 界面滚动 -> 触发本方法
+    if (contentOffsetX == self.index) { //已经设置完毕 -> 界面滚动 -> 触发本方法
         return;
     }
     
-    if (contentOffsetX < 0)
-    { //最左边
+    if (contentOffsetX < 0) { //最左边
         return;
     }
     
-    if (contentOffsetX > self.pageList.count - 1)
-    { //最右边
+    if (contentOffsetX > self.pageList.count - 1) { //最右边
         return;
     }
     
@@ -107,8 +98,7 @@ static NSInteger labTag = 1000000;
     CGFloat maxW;
     
     //设置 X 变化
-    if (self.index > leftIndex)
-    { //往右滑
+    if (self.index > leftIndex) { //往右滑
         currentBtn = rightBtn;
         currentW = rightBtn.width + self.currentLineMargin;
         targetW = leftBtn.width + self.currentLineMargin;
@@ -116,8 +106,7 @@ static NSInteger labTag = 1000000;
         targetX = leftBtn.centerX - (targetW / 2);
         
         //设置了Size 则不进行标签适配
-        if (self.currentLineSize.width)
-        {
+        if (self.currentLineSize.width) {
             CGFloat lineW = self.currentLineSize.width;
             currentX = rightBtn.centerX - (lineW / 2);
             targetX = leftBtn.centerX - (lineW / 2);
@@ -126,17 +115,14 @@ static NSInteger labTag = 1000000;
         
         maxW = currentX - targetX + currentW;
         
-        if (contentOffsetX - leftIndex > 0.5)
-        { //首先
+        if (contentOffsetX - leftIndex > 0.5) { //首先
             //0 ~ 1
             scale = (1 - (contentOffsetX - leftIndex)) * 2;
             //X 减小
             self.currentLine.x = currentX - scale * (currentX - targetX);
             //W 变大
             self.currentLine.width = currentW + (currentX - self.currentLine.x);
-        }
-        else
-        { //然后
+        } else { //然后
             
             //1 ~ 0
             scale = ((contentOffsetX - leftIndex)) * 2;
@@ -147,8 +133,7 @@ static NSInteger labTag = 1000000;
         }
     }
     
-    if (self.index < rightIndex)
-    { //往左滑
+    if (self.index < rightIndex) { //往左滑
         currentBtn = leftBtn;
         currentW = leftBtn.width + self.currentLineMargin;
         targetW = rightBtn.width + self.currentLineMargin;
@@ -156,8 +141,7 @@ static NSInteger labTag = 1000000;
         targetX = rightBtn.centerX - (targetW / 2);
         
         //设置了Size 则不进行标签适配
-        if (self.currentLineSize.width)
-        {
+        if (self.currentLineSize.width) {
             CGFloat lineW = self.currentLineSize.width;
             currentX = leftBtn.centerX - (lineW / 2);
             targetX = rightBtn.centerX - (lineW / 2);
@@ -166,8 +150,7 @@ static NSInteger labTag = 1000000;
         
         maxW = targetX - currentX + targetW;
         
-        if (rightIndex - contentOffsetX > 0.5)
-        { //首先
+        if (rightIndex - contentOffsetX > 0.5) { //首先
             
             //0 ~ 1
             scale = (1 - (rightIndex - contentOffsetX)) * 2;
@@ -175,9 +158,7 @@ static NSInteger labTag = 1000000;
             self.currentLine.x = currentX;
             //W 变大
             self.currentLine.width = currentW + scale * (maxW - currentW);
-        }
-        else
-        { //然后
+        } else { //然后
             
             //1 ~ 0
             scale = (rightIndex - contentOffsetX) * 2;
@@ -195,99 +176,42 @@ static NSInteger labTag = 1000000;
     [leftBtn setTitleColor:[self getColorWithScale:scaleLeft] forState:0];
     [rightBtn setTitleColor:[self getColorWithScale:1 - scaleLeft] forState:0];
     
-    if (leftIndex == contentOffsetX)
-    {
+    if (leftIndex == contentOffsetX) {
         self.index = leftIndex;
     }
 }
 
-- (void)setCurrentLineY:(CGFloat)currentLineY
-{
+- (void)setCurrentLineY:(CGFloat)currentLineY {
     _currentLineY = currentLineY;
     //竖直布局不生效
-    if (self.scrollDirection == UICollectionViewScrollDirectionVertical)
-    {
+    if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
         return;
     }
     self.currentLine.y = currentLineY;
 }
 
-- (void)setCurrentImg:(UIImage *)currentImg
-{
+- (void)setCurrentImg:(UIImage *)currentImg {
     _currentImg = currentImg;
     self.currentLine.image = currentImg;
 }
 
-- (void)setCurrentLineSize:(CGSize)currentLineSize
-{
+- (void)setCurrentLineSize:(CGSize)currentLineSize {
     _currentLineSize = currentLineSize;
     self.currentLine.size = currentLineSize;
 }
 
-- (void)setCurrentLineColor:(UIColor *)currentLineColor
-{
-    if (!currentLineColor)
-    {
-        currentLineColor = [UIColor redColor];
-    }
+- (void)setCurrentLineColor:(UIColor *)currentLineColor {
     _currentLineColor = currentLineColor;
     self.currentLine.backgroundColor = currentLineColor;
 }
 
-- (void)setCurrentLineRadius:(CGFloat)currentLineRadius
-{
+- (void)setCurrentLineRadius:(CGFloat)currentLineRadius {
     _currentLineRadius = currentLineRadius;
     self.currentLine.layer.cornerRadius = currentLineRadius;
 }
 
-- (void)setTagColor:(UIColor *)tagColor
-{
-    if (!tagColor)
-    {
-        tagColor = [UIColor redColor];
-    }
-    _tagColor = tagColor;
-}
-
-- (void)setFontSize:(UIFont *)fontSize
-{
-    if (!fontSize)
-    {
-        fontSize = [UIFont boldSystemFontOfSize:16];
-    }
-    _fontSize = fontSize;
-}
-
-- (void)setUnFontSize:(UIFont *)unFontSize
-{
-    if (!unFontSize)
-    {
-        unFontSize = [UIFont systemFontOfSize:16];
-    }
-    _unFontSize = unFontSize;
-}
-
-- (void)setCheckColor:(UIColor *)checkColor
-{
-    if (!checkColor)
-    {
-        checkColor = [UIColor blackColor];
-    }
-    _checkColor = checkColor;
-}
-
-- (void)setUncheckColor:(UIColor *)uncheckColor
-{
-    if (!uncheckColor)
-    {
-        uncheckColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
-    }
-    _uncheckColor = uncheckColor;
-}
-
 #pragma mark 配置UI
-- (void)configUI
-{
+- (void)configUI {
     //设置滚动大小
     self.pageScroll.size = self.size;
     
@@ -295,19 +219,15 @@ static NSInteger labTag = 1000000;
     [self.pageScroll addSubview:self.currentLine];
     
     //设置内容
-    switch (self.scrollDirection)
-    {
+    switch (self.scrollDirection) {
         case UICollectionViewScrollDirectionVertical: //竖直布局
         {
             [self configVertical];
-        }
-            break;
-        default:
-        {
+        } break;
+        default: {
             //默认水平布局
             [self configHorizontal];
-        }
-            break;
+        } break;
     }
     
     //刷新界面
@@ -315,13 +235,11 @@ static NSInteger labTag = 1000000;
 }
 
 #pragma mark 水平布局
-- (void)configHorizontal
-{
+- (void)configHorizontal {
     //设置标签
     CGFloat view_h = self.pageScroll.height;
     
-    if (self.type == SHLabelPageType_one)
-    {
+    if (self.type == SHLabelPageType_one) {
         //一页 居中没有startX
         self.start = 0;
     }
@@ -331,27 +249,22 @@ static NSInteger labTag = 1000000;
     __block CGFloat contentSetX = 0;
     
     //设置内容
-    [self.pageList enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *_Nonnull stop) {
+    [self.pageList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *_Nonnull stop) {
         //设置标签
-        UIButton *btn = [self getChannelLab];
-        [btn setTitle:obj forState:0];
+        UIButton *btn = [self getChannelLab:obj];
+        
         btn.tag = labTag + idx;
         
         //设置了宽度就用、没设置用自适应
-        if (self.labelW)
-        {
+        if (self.labelW) {
             btn.frame = CGRectMake(view_x, 0, self.labelW, view_h);
-        }
-        else
-        {
+        } else {
             btn.frame = CGRectMake(view_x, 0, [self getChannelWithText:obj], view_h);
         }
         
         //一页的话就是整体居中
-        if (self.type == SHLabelPageType_one)
-        {
-            if (idx == self.pageList.count - 1)
-            { //最后一个
+        if (self.type == SHLabelPageType_one) {
+            if (idx == self.pageList.count - 1) { //最后一个
                 //计算位置
                 contentSetX = (self.width - btn.maxX) / 2;
             }
@@ -362,10 +275,9 @@ static NSInteger labTag = 1000000;
         [self.pageScroll addSubview:btn];
         
         NSString *key = [NSString stringWithFormat:@"%lu", (unsigned long)idx];
-        CGRect frame = [self.labelTag[key] CGRectValue];
+        CGRect frame = [self.tagConfig[key] CGRectValue];
         //是否存在标记
-        if (frame.size.height)
-        {
+        if (frame.size.height) {
             //添加标记
             CALayer *layer = [CALayer layer];
             layer.frame = frame;
@@ -375,33 +287,42 @@ static NSInteger labTag = 1000000;
         }
     }];
     
-    if (contentSetX)
-    {
+    if (contentSetX) {
         self.pageScroll.contentSize = CGSizeMake(view_x - self.space, 0);
         self.pageScroll.x = contentSetX;
-    }
-    else
-    {
+    } else {
         self.pageScroll.contentSize = CGSizeMake(view_x, 0);
     }
 }
 
 #pragma mark 竖直布局
-- (void)configVertical
-{
+- (void)configVertical {
     self.currentLine.origin = CGPointZero;
     __block CGFloat view_y = 0;
     //设置内容
-    [self.pageList enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *_Nonnull stop) {
+    [self.pageList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *_Nonnull stop) {
         //设置标签
-        UIButton *btn = [self getChannelLab];
-        [btn setTitle:obj forState:0];
-        btn.tag = labTag + idx;
+        UIButton *btn = [self getChannelLab:obj];
+        
         btn.origin = CGPointMake(0, view_y);
         btn.size = CGSizeMake(self.pageScroll.width, self.labelH);
+        btn.tag = labTag + idx;
+        
         view_y = btn.maxY;
         
         [self.pageScroll addSubview:btn];
+        
+        NSString *key = [NSString stringWithFormat:@"%lu", (unsigned long)idx];
+        CGRect frame = [self.tagConfig[key] CGRectValue];
+        //是否存在标记
+        if (frame.size.height) {
+            //添加标记
+            CALayer *layer = [CALayer layer];
+            layer.frame = frame;
+            layer.cornerRadius = frame.size.height / 2;
+            layer.backgroundColor = self.tagColor.CGColor;
+            [btn.layer addSublayer:layer];
+        }
     }];
     
     self.pageScroll.contentSize = CGSizeMake(0, view_y);
@@ -409,11 +330,18 @@ static NSInteger labTag = 1000000;
 }
 
 #pragma mark 获取标签
-- (UIButton *)getChannelLab
-{
+- (UIButton *)getChannelLab:(id)obj {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.titleLabel.font = self.fontSize;
     btn.backgroundColor = [UIColor clearColor];
+    
+    if ([obj isKindOfClass:[NSString class]]) {
+        [btn setTitle:obj forState:0];
+    } else if ([obj isKindOfClass:[NSAttributedString class]]) {
+        [btn setAttributedTitle:obj forState:0];
+    }else{
+        [btn setTitle:@"未定义内容" forState:0];
+    }
     
     [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -421,33 +349,27 @@ static NSInteger labTag = 1000000;
 }
 
 #pragma mark 获取宽度
-- (CGFloat)getChannelWithText:(NSString *)text
-{
+- (CGFloat)getChannelWithText:(NSString *)text {
     CGSize size = [text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, self.pageScroll.height) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : self.fontSize} context:nil].size;
     
     return ceil(size.width);
 }
 
 #pragma mark 标签点击
-- (void)btnAction:(UIButton *)btn
-{
+- (void)btnAction:(UIButton *)btn {
     self.index = btn.tag - labTag;
 }
 
 #pragma mark 刷新视图
-- (void)reloadPage
-{
-    if (self.index >= self.pageList.count)
-    {
+- (void)reloadPage {
+    if (self.index >= self.pageList.count) {
         return;
     }
     
     //改变颜色
-    for (UIButton *btn in self.pageScroll.subviews)
-    {
+    for (UIButton *btn in self.pageScroll.subviews) {
         //找到标签
-        if (btn.tag >= labTag && btn.tag < (self.pageList.count + labTag))
-        {
+        if (btn.tag >= labTag && btn.tag < (self.pageList.count + labTag)) {
             //未选中颜色
             [btn setTitleColor:[self getColorWithScale:0] forState:0];
             btn.titleLabel.font = self.unFontSize;
@@ -455,8 +377,7 @@ static NSInteger labTag = 1000000;
     }
     
     //处理布局
-    switch (self.scrollDirection)
-    {
+    switch (self.scrollDirection) {
         case UICollectionViewScrollDirectionVertical: //垂直
             [self handlePageVertical];
             break;
@@ -467,20 +388,18 @@ static NSInteger labTag = 1000000;
 }
 
 #pragma mark 处理水平
-- (void)handlePageHorizontal
-{
+- (void)handlePageHorizontal {
     //取出当前的标签
     UIButton *currentBtn = [self.pageScroll viewWithTag:self.index + labTag];
     CGFloat lineW = self.currentLineSize.width ?: (currentBtn.width + self.currentLineMargin);
     
-    if (self.type == SHLabelPageType_more)
-    { //多个标签情况
+    if (self.type == SHLabelPageType_more) { //多个标签情况
         //设置scroll居中
         CGFloat offsetX = currentBtn.centerX - self.pageScroll.width * 0.5;
         CGFloat offsetMaxX = self.pageScroll.contentSize.width - self.pageScroll.width;
         
         offsetX = MAX(0, MIN(offsetX, offsetMaxX));
-
+        
         //滚动
         [self.pageScroll setContentOffset:CGPointMake(offsetX, 0) animated:YES];
     }
@@ -499,8 +418,7 @@ static NSInteger labTag = 1000000;
 }
 
 #pragma mark 处理竖直
-- (void)handlePageVertical
-{
+- (void)handlePageVertical {
     //取出当前的标签
     UIButton *currentBtn = [self.pageScroll viewWithTag:self.index + labTag];
     
@@ -509,7 +427,7 @@ static NSInteger labTag = 1000000;
     CGFloat offsetMaxY = self.pageScroll.contentSize.height - self.pageScroll.height;
     
     offsetY = MAX(0, MIN(offsetY, offsetMaxY));
-
+    
     //滚动
     [self.pageScroll setContentOffset:CGPointMake(0, offsetY) animated:YES];
     
@@ -526,8 +444,7 @@ static NSInteger labTag = 1000000;
 }
 
 #pragma mark 获取颜色RGB
-- (UIColor *)getColorWithScale:(CGFloat)scale
-{
+- (UIColor *)getColorWithScale:(CGFloat)scale {
     //0 ~ 1
     NSArray *uncheckColorArr = [self getRGBWithColor:self.uncheckColor];
     
@@ -542,19 +459,15 @@ static NSInteger labTag = 1000000;
 }
 
 #pragma mark 获取颜色RGB集合
-- (NSArray *)getRGBWithColor:(UIColor *)color
-{
+- (NSArray *)getRGBWithColor:(UIColor *)color {
     //获得RGB值描述
     NSString *RGBValue = [NSString stringWithFormat:@"%@", color];
     //将RGB值描述分隔成字符串
     NSArray *RGBArr = [RGBValue componentsSeparatedByString:@" "];
     
-    if (RGBArr.count == 3)
-    {
+    if (RGBArr.count == 3) {
         RGBArr = @[ RGBArr[1], RGBArr[1], RGBArr[1], RGBArr[2] ];
-    }
-    else
-    {
+    } else {
         RGBArr = @[ RGBArr[1], RGBArr[2], RGBArr[3], RGBArr[4] ];
     }
     
@@ -577,10 +490,8 @@ static NSInteger labTag = 1000000;
 
 #pragma mark - 懒加载
 //滚动视图
-- (UIScrollView *)pageScroll
-{
-    if (!_pageScroll)
-    {
+- (UIScrollView *)pageScroll {
+    if (!_pageScroll) {
         _pageScroll = [[UIScrollView alloc] init];
         _pageScroll.origin = CGPointMake(0, 0);
         _pageScroll.backgroundColor = [UIColor clearColor];
@@ -594,10 +505,8 @@ static NSInteger labTag = 1000000;
 }
 
 //当前点击的线
-- (UIImageView *)currentLine
-{
-    if (!_currentLine)
-    {
+- (UIImageView *)currentLine {
+    if (!_currentLine) {
         _currentLine = [[UIImageView alloc] init];
         _currentLine.height = 4;
         _currentLine.layer.cornerRadius = _currentLine.height / 2;
@@ -609,20 +518,17 @@ static NSInteger labTag = 1000000;
 
 #pragma mark - 公共方法
 #pragma mark - 刷新
-- (void)reloadView
-{
+- (void)reloadView {
     //移除以前的标签
     [self.pageScroll.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     self.pageScroll.x = 0;
     
-    if (!self.pageList.count)
-    {
+    if (!self.pageList.count) {
         return;
     }
     
     //如果是垂直的则 为多页效果
-    if (self.scrollDirection == UICollectionViewScrollDirectionVertical)
-    {
+    if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
         self.type = SHLabelPageType_more;
     }
     

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIView+SHExtension.h>
 #import <UIKit/UIKit.h>
 
 //标签页类型
@@ -21,13 +22,13 @@ typedef enum : NSUInteger {
 @interface SHLabelPageView : UIView
 
 #pragma mark - 必须设置
-//数组
-@property (nonatomic, strong) NSArray <NSString *>*pageList;
+//数组(NSString、NSAttributedString)
+@property (nonatomic, strong) NSArray *pageList;
 
+#pragma mark - 选择设置
 //回调(标签点击回调)
 @property (nonatomic, copy) void(^pageViewBlock)(NSInteger index);
 
-#pragma mark - 选择设置
 //类型
 @property (nonatomic, assign) SHLabelPageType type;
 //当前位置(默认是0)
@@ -62,14 +63,6 @@ typedef enum : NSUInteger {
 //标签未选中颜色(默认是黑色 0.3)
 @property (nonatomic, strong) UIColor *uncheckColor;
 
-#pragma mark 其他功能定制
-#pragma mark 标记
-//key   标签位置
-//value frame
-@property (nonatomic, strong) NSDictionary *labelTag;
-//标记颜色（默认红色）
-@property (nonatomic, strong) UIColor *tagColor;
-
 #pragma mark 选中线
 //选中线 Y
 @property (nonatomic, assign) CGFloat currentLineY;
@@ -84,6 +77,14 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) CGFloat currentLineRadius;
 //选中线 color(默认 redColor)
 @property (nonatomic, strong) UIColor *currentLineColor;
+
+#pragma mark - 其他功能定制
+#pragma mark 标记
+//key   标记位置
+//value frame
+@property (nonatomic, strong) NSDictionary *tagConfig;
+//标记颜色（默认红色）
+@property (nonatomic, strong) UIColor *tagColor;
 
 #pragma mark 刷新
 - (void)reloadView;

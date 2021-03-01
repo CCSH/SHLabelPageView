@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,8 +13,8 @@
 		80B2BFBC231DF6B20096C45A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80B2BFBB231DF6B20096C45A /* Assets.xcassets */; };
 		80B2BFBF231DF6B20096C45A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80B2BFBD231DF6B20096C45A /* LaunchScreen.storyboard */; };
 		80B2BFC2231DF6B20096C45A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B2BFC1231DF6B20096C45A /* main.m */; };
-		80B2BFCB231DF6D00096C45A /* SHLabelPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B2BFCA231DF6D00096C45A /* SHLabelPageView.m */; };
 		80B2BFD1231DF70F0096C45A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80B2BFD0231DF70F0096C45A /* Main.storyboard */; };
+		83FF4C7325ECBD7100E9D568 /* SHLabelPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FF4C7225ECBD7100E9D568 /* SHLabelPageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,9 +29,9 @@
 		80B2BFBE231DF6B20096C45A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80B2BFC0231DF6B20096C45A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80B2BFC1231DF6B20096C45A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		80B2BFC9231DF6D00096C45A /* SHLabelPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHLabelPageView.h; sourceTree = "<group>"; };
-		80B2BFCA231DF6D00096C45A /* SHLabelPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHLabelPageView.m; sourceTree = "<group>"; };
 		80B2BFD0231DF70F0096C45A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		83FF4C7125ECBD7100E9D568 /* SHLabelPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHLabelPageView.h; sourceTree = "<group>"; };
+		83FF4C7225ECBD7100E9D568 /* SHLabelPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHLabelPageView.m; sourceTree = "<group>"; };
 		C25E359382C0ABC659CB6CE4 /* Pods-SHLabelPageViewExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SHLabelPageViewExample.release.xcconfig"; path = "Target Support Files/Pods-SHLabelPageViewExample/Pods-SHLabelPageViewExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,7 +76,7 @@
 		80B2BFB1231DF6B10096C45A /* SHLabelPageViewExample */ = {
 			isa = PBXGroup;
 			children = (
-				80B2BFC8231DF6D00096C45A /* SHLabelPageView */,
+				83FF4C7025ECBD7100E9D568 /* SHLabelPageView */,
 				80B2BFB2231DF6B10096C45A /* AppDelegate.h */,
 				80B2BFB3231DF6B10096C45A /* AppDelegate.m */,
 				80B2BFB5231DF6B10096C45A /* ViewController.h */,
@@ -90,13 +90,14 @@
 			path = SHLabelPageViewExample;
 			sourceTree = "<group>";
 		};
-		80B2BFC8231DF6D00096C45A /* SHLabelPageView */ = {
+		83FF4C7025ECBD7100E9D568 /* SHLabelPageView */ = {
 			isa = PBXGroup;
 			children = (
-				80B2BFC9231DF6D00096C45A /* SHLabelPageView.h */,
-				80B2BFCA231DF6D00096C45A /* SHLabelPageView.m */,
+				83FF4C7125ECBD7100E9D568 /* SHLabelPageView.h */,
+				83FF4C7225ECBD7100E9D568 /* SHLabelPageView.m */,
 			);
-			path = SHLabelPageView;
+			name = SHLabelPageView;
+			path = ../../SHLabelPageView;
 			sourceTree = "<group>";
 		};
 		8FEB330C3C96E5C103865F45 /* Pods */ = {
@@ -105,7 +106,6 @@
 				0F340195C6D6799B9DE542C3 /* Pods-SHLabelPageViewExample.debug.xcconfig */,
 				C25E359382C0ABC659CB6CE4 /* Pods-SHLabelPageViewExample.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -226,7 +226,7 @@
 				80B2BFB7231DF6B10096C45A /* ViewController.m in Sources */,
 				80B2BFC2231DF6B20096C45A /* main.m in Sources */,
 				80B2BFB4231DF6B10096C45A /* AppDelegate.m in Sources */,
-				80B2BFCB231DF6D00096C45A /* SHLabelPageView.m in Sources */,
+				83FF4C7325ECBD7100E9D568 /* SHLabelPageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
