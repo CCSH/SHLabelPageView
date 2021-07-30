@@ -118,7 +118,6 @@
         self.pageView.type = SHLabelPageType_one;
         self.pageView.space = 30;
         self.pageView.pageList = @[ @"关注", @"热门", @"最新" ];
-        //        self.pageView.labelW = self.view.width/3;
         self.pageView.tagConfig = @{@"2" : [NSValue valueWithCGRect:CGRectMake(32, 15, 8, 8)]};
         self.pageView.index = 1;
 
@@ -139,7 +138,7 @@
 {
     self.pageView.currentLineSize = CGSizeMake(5, 20);
     self.pageView.currentLineColor = [UIColor redColor];
-    self.pageView.currentLineRadius = 0;
+    self.pageView.currentLineRadius = 2;
     self.pageView.size = CGSizeMake(100, 600);
     self.pageView.backgroundColor = [UIColor orangeColor];
     self.pageView.scrollDirection = UICollectionViewScrollDirectionVertical;

@@ -7,7 +7,7 @@
 //
 
 #import "SHLabelPageView.h"
-#import <UIView+SHExtension.h>
+#import "UIView+SHExtension.h"
 
 @interface SHLabelPageView ()
 
@@ -32,7 +32,6 @@ static NSInteger labTag = 1000000;
         self.checkColor = [UIColor blackColor];
         self.uncheckColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
         self.currentLineColor = [UIColor redColor];
-        ;
         self.labelH = 40;
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     }

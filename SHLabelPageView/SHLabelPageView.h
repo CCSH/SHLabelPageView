@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIView+SHExtension.h>
 #import <UIKit/UIKit.h>
 
 //标签页类型
@@ -70,7 +69,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) UIImage *currentImg;
 //选中线 size(默认 height: 4, width: 自适应)
 @property (nonatomic, assign) CGSize currentLineSize;
-//选中线 多出间隙(未设置宽度 currentLineSize.width 时需要多余的间隙 如果设置了宽度则 此属性失效)
+//选中线 自适应后多出间隙(未设置宽度 currentLineSize.width 时需要多余的间隙 如果设置了宽度则 此属性失效)
 @property (nonatomic, assign) CGFloat currentLineMargin;
 
 //选中线 弧度(默认 2)
