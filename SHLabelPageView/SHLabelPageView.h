@@ -21,7 +21,7 @@ typedef enum : NSUInteger {
 @interface SHLabelPageView : UIView
 
 #pragma mark - 必须设置
-//数组(NSString、NSAttributedString)
+//数组(NSString、NSAttributedString、UIView)
 @property (nonatomic, strong) NSArray *pageList;
 
 #pragma mark - 选择设置
@@ -76,6 +76,11 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) CGFloat currentLineRadius;
 //选中线 color(默认 redColor)
 @property (nonatomic, strong) UIColor *currentLineColor;
+
+//选中线 位置默认在标签下方
+@property (nonatomic, assign) BOOL currentLineTop;
+//选中线 是否有动画默认有
+@property (nonatomic, assign) BOOL currentLineAnimation;
 
 #pragma mark - 其他功能定制
 #pragma mark 标记

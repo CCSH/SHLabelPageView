@@ -34,6 +34,7 @@ static NSInteger labTag = 1000000;
         self.currentLineColor = [UIColor redColor];
         self.labelH = 40;
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        self.currentLineAnimation = YES;
     }
     return self;
 }
@@ -96,6 +97,10 @@ static NSInteger labTag = 1000000;
     //最大 W
     CGFloat maxW;
     
+    //选中线
+    CGFloat currentLineX = 0;
+    CGFloat currentLineW = 0;
+    
     //设置 X 变化
     if (self.index > leftIndex) { //往右滑
         currentBtn = rightBtn;
@@ -117,18 +122,19 @@ static NSInteger labTag = 1000000;
         if (contentOffsetX - leftIndex > 0.5) { //首先
             //0 ~ 1
             scale = (1 - (contentOffsetX - leftIndex)) * 2;
+            
             //X 减小
-            self.currentLine.x = currentX - scale * (currentX - targetX);
+            currentLineX = currentX - scale * (currentX - targetX);
             //W 变大
-            self.currentLine.width = currentW + (currentX - self.currentLine.x);
+            currentLineW = currentW + (currentX - self.currentLine.x);
         } else { //然后
             
             //1 ~ 0
             scale = ((contentOffsetX - leftIndex)) * 2;
             //X 不变
-            self.currentLine.x = targetX;
+            currentLineX = targetX;
             //W 减小
-            self.currentLine.width = maxW - (1 - scale) * (maxW - targetW);
+            currentLineW = maxW - (1 - scale) * (maxW - targetW);
         }
     }
     
@@ -154,26 +160,40 @@ static NSInteger labTag = 1000000;
             //0 ~ 1
             scale = (1 - (rightIndex - contentOffsetX)) * 2;
             //X 不变
-            self.currentLine.x = currentX;
+            currentLineX = currentX;
             //W 变大
-            self.currentLine.width = currentW + scale * (maxW - currentW);
+            currentLineW = currentW + scale * (maxW - currentW);
         } else { //然后
             
             //1 ~ 0
             scale = (rightIndex - contentOffsetX) * 2;
             //X 变大
-            self.currentLine.x = currentX + (1 - scale) * (targetX - currentX);
+            currentLineX = currentX + (1 - scale) * (targetX - currentX);
             //W 减小
-            self.currentLine.width = maxW - (self.currentLine.x - currentX);
+            currentLineW = maxW - (self.currentLine.x - currentX);
         }
+    }
+    
+    if (self.currentLineAnimation) {
+        self.currentLine.x = currentLineX;
+        self.currentLine.width = currentLineW;
     }
     
     //文字颜色
     CGFloat scaleLeft = (rightIndex - contentOffsetX);
-    
     //设置左右视图颜色变化
-    [leftBtn setTitleColor:[self getColorWithScale:scaleLeft] forState:0];
-    [rightBtn setTitleColor:[self getColorWithScale:1 - scaleLeft] forState:0];
+    if (leftBtn) {
+        if ([self.pageList[leftIndex] isKindOfClass:[NSString class]]) {
+            [leftBtn setTitleColor:[self getColorWithScale:scaleLeft] forState:0];
+        }
+    }
+
+    if (rightBtn) {
+        if ([self.pageList[rightIndex] isKindOfClass:[NSString class]]) {
+            [rightBtn setTitleColor:[self getColorWithScale:1 - scaleLeft] forState:0];
+        }
+    }
+
     
     if (leftIndex == contentOffsetX) {
         self.index = leftIndex;
@@ -231,6 +251,11 @@ static NSInteger labTag = 1000000;
     
     //刷新界面
     [self reloadPage];
+    
+    //最上方
+    if (self.currentLineTop) {
+        [self.pageScroll bringSubviewToFront:self.currentLine];
+    }
 }
 
 #pragma mark 水平布局
@@ -258,7 +283,7 @@ static NSInteger labTag = 1000000;
         if (self.labelW) {
             btn.frame = CGRectMake(view_x, 0, self.labelW, view_h);
         } else {
-            btn.frame = CGRectMake(view_x, 0, [self getChannelWithText:obj], view_h);
+            btn.frame = CGRectMake(view_x, 0, [self getChannelWithObj:obj], view_h);
         }
         
         //一页的话就是整体居中
@@ -272,7 +297,7 @@ static NSInteger labTag = 1000000;
         view_x += btn.width + self.space;
         
         [self.pageScroll addSubview:btn];
-        
+
         NSString *key = [NSString stringWithFormat:@"%lu", (unsigned long)idx];
         CGRect frame = [self.tagConfig[key] CGRectValue];
         //是否存在标记
@@ -338,8 +363,10 @@ static NSInteger labTag = 1000000;
         [btn setTitle:obj forState:0];
     } else if ([obj isKindOfClass:[NSAttributedString class]]) {
         [btn setAttributedTitle:obj forState:0];
+    } else if ([obj isKindOfClass:[UIView class]]) {
+        [btn addSubview:obj];
     }else{
-        [btn setTitle:@"未定义内容" forState:0];
+        [btn setTitle:@"未知类型内容" forState:0];
     }
     
     [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -348,9 +375,18 @@ static NSInteger labTag = 1000000;
 }
 
 #pragma mark 获取宽度
-- (CGFloat)getChannelWithText:(NSString *)text {
-    CGSize size = [text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, self.pageScroll.height) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : self.fontSize} context:nil].size;
-    
+- (CGFloat)getChannelWithObj:(id)obj {
+    CGSize size = CGSizeMake(CGFLOAT_MAX, self.pageScroll.height);
+    if ([obj isKindOfClass:[NSString class]]) {
+        size = [obj boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : self.fontSize} context:nil].size;
+    }else if ([obj isKindOfClass:[NSAttributedString class]]){
+        size = [obj boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size;
+    }else if ([obj isKindOfClass:[UIView class]]){
+        size = CGSizeMake([obj frame].size.width, self.pageScroll.height);
+    }else{
+        size = CGSizeZero;
+    }
+ 
     return ceil(size.width);
 }
 
